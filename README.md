@@ -7,6 +7,7 @@ drop-in batch sampler, and pick the machine that finishes the job for the least 
 
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](#license)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](pyproject.toml)
+[![tests](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml/badge.svg)](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml)
 
 In data-parallel training every GPU pads its batch to the longest sequence in it, and every
 optimizer step waits for the slowest GPU. With text of mixed lengths that can be most of the GPU
@@ -104,10 +105,11 @@ pip install ".[hf]"        # adds the Hugging Face Trainer integration
 Install PyTorch yourself, in the build that matches your GPU. The sampler and `probe` need it;
 `diagnose` and `pick` do not.
 
-Tested with Python 3.9 to 3.13 on Windows 11 (MSVC) and on Ubuntu 24.04 (GCC), and on Linux in the
-containers of the GPU runs. Library versions: PyTorch 2.14 (GPU runs) and 2.15 (CPU), transformers 5.22,
-Lightning 2.6, Accelerate 1.15. Not yet run on a Mac: the package and the C++ tests build and pass
-with clang and libc++ (the macOS toolchain) on Linux, and GitHub Actions adds a macOS run.
+Tested with Python 3.9 to 3.13 on Windows (MSVC) and Ubuntu 24.04 (GCC), with Python 3.13 on
+macOS 26 on Apple Silicon (Apple clang), and on Linux in the containers of the GPU runs.
+[GitHub Actions](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml) repeats all of
+these on every push. Library versions: PyTorch 2.14 (GPU runs) and 2.15 (CPU), transformers 5.22,
+Lightning 2.6, Accelerate 1.15.
 
 ## 1. Diagnose: where the GPU time goes
 

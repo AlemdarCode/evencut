@@ -7,6 +7,7 @@ bir batch sampler ile geri kazan ve işi en az parayla bitirecek makineyi seç.*
 
 [![Lisans: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](#lisans)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](pyproject.toml)
+[![tests](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml/badge.svg)](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml)
 
 Veri paralel eğitimde her GPU kendi batch'ini içindeki en uzun diziye kadar doldurur, her optimizer
 adımı da en yavaş GPU'yu bekler. Uzunlukları karışık metinde bu, GPU zamanının çoğunu
@@ -105,11 +106,11 @@ pip install ".[hf]"        # Hugging Face Trainer entegrasyonunu ekler
 PyTorch'u GPU'na uyan sürümüyle kendin kur. Sampler ve `probe` için gerekir; `diagnose` ve `pick`
 için gerekmez.
 
-Python 3.9–3.13 ile Windows 11'de (MSVC) ve Ubuntu 24.04'te (GCC), ayrıca GPU koşularının Linux
-kapsayıcılarında test edildi. Kütüphane sürümleri: PyTorch 2.14 (GPU koşuları) ve 2.15 (CPU), transformers 5.22,
-Lightning 2.6, Accelerate 1.15. Henüz bir Mac'te çalıştırılmadı: paket ve C++ testleri, Linux'ta
-macOS'un araçları olan clang ve libc++ ile derlenip geçiyor; GitHub Actions bir macOS koşusu da
-ekliyor.
+Python 3.9–3.13 ile Windows'ta (MSVC) ve Ubuntu 24.04'te (GCC), Python 3.13 ile Apple Silicon'lu
+macOS 26'da (Apple clang), ayrıca GPU koşularının Linux kapsayıcılarında test edildi.
+[GitHub Actions](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml) bunların hepsini
+her gönderimde yeniden çalıştırır. Kütüphane sürümleri: PyTorch 2.14 (GPU koşuları) ve 2.15 (CPU),
+transformers 5.22, Lightning 2.6, Accelerate 1.15.
 
 ## 1. Teşhis: GPU zamanı nereye gidiyor
 
