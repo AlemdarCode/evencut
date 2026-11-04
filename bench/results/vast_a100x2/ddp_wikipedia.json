@@ -1,0 +1,109 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "Wikipedia-TR",
+ "gpus": 2,
+ "gpu": "NVIDIA A100-SXM4-40GB",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-5.15.0-1079-nvidia-x86_64-with-glibc2.39",
+ "model": "small",
+ "params": 29893120,
+ "allreduce_ms": 11.729588732123375,
+ "seq_len": 2048,
+ "global_batch": 12,
+ "steps": 40,
+ "accum": 1,
+ "topology": "\t\u001b[4mGPU0\tGPU1\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tSYS\t0-63,128-191\t0\t\tN/A\nGPU1\tSYS\t X \t64-127,192-255\t1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+ "sampler_checked": false,
+ "args": {
+  "lengths": "/root/run/data/wikipedia_tr_run.txt",
+  "offset": "0",
+  "name": "Wikipedia-TR",
+  "seq_len": "2048",
+  "vocab": "8192",
+  "model": "small",
+  "global_batch": "12",
+  "steps": "40",
+  "warmup": "5",
+  "accum": "1",
+  "extended": "False",
+  "repeats": "2",
+  "seed": "20261101",
+  "out_dir": "/root/out",
+  "out_name": "ddp_wikipedia"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 39.93553104810417,
+   "tokens_per_s": 105369.82705779653,
+   "wasted": 0.5189757658893461
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 49.09238270483911,
+   "tokens_per_s": 130937.82875945797,
+   "wasted": 0.6269669246192371
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 47.61638226918876,
+   "tokens_per_s": 134996.60607688403,
+   "wasted": 0.6249197679982261
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 45.93919087201357,
+   "tokens_per_s": 139925.1897559216,
+   "wasted": 0.6054595672855608
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 49.823539750650525,
+   "tokens_per_s": 129016.32505779703,
+   "wasted": 0.4882166543260006
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 47.847414622083306,
+   "tokens_per_s": 134344.77182876298,
+   "wasted": 0.5114080543314883
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 41.337806545197964,
+   "tokens_per_s": 155500.5099985577,
+   "wasted": 0.4025392812495643
+  },
+  {
+   "order": "any order",
+   "split": "LPT on padded size (not contiguous)",
+   "step_ms": 46.16050752811134,
+   "tokens_per_s": 139254.31812216048,
+   "wasted": 0.6177783988202835
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 39.248146349564195,
+   "tokens_per_s": 163779.70930775884,
+   "wasted": 0.022093248799114562
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 38.962133741006255,
+   "tokens_per_s": 164981.9807798336,
+   "wasted": 0.022093248799114562
+  }
+ ]
+}

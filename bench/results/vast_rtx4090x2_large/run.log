@@ -1,0 +1,138 @@
+index, name, memory.total [MiB], driver_version, power.limit [W]
+0, NVIDIA GeForce RTX 4090, 49140 MiB, 595.84, 450.00 W
+1, NVIDIA GeForce RTX 4090, 49140 MiB, 595.84, 450.00 W
+== 14:13:33 probe 310M model
+W1102 14:13:35.707000 424 torch/distributed/run.py:982] 
+W1102 14:13:35.707000 424 torch/distributed/run.py:982] *****************************************
+W1102 14:13:35.707000 424 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 14:13:35.707000 424 torch/distributed/run.py:982] *****************************************
+evencut probe: 2 rank(s) on cuda; model 24x1024, vocab 8192
+  timed 33 batch shapes, 2 rounds
+Evencut probe: 2x NVIDIA GeForce RTX 4090, 47.4 GB (46.9 GB free)
+  links      PXB (slowest PXB); peer-to-peer: none
+  model      24 layers x 1024 wide, vocab 8192: 312.0M weights
+  compute    bf16 matmul 147.0 TFLOPS per GPU (range 146.4-147.6)
+  stragglers slowest GPU 1.1% behind the fastest
+  one micro-batch, forward + backward (slowest GPU):
+      tokens  length        ms  efficiency
+          32      32     84.40         1%
+          64      64     82.47         2%
+         128     128     82.94         3%
+         256     256     82.88         6%
+         512     512     87.48        12%
+       1,024      32     83.20        24%
+       1,024      64     82.40        24%
+       1,024     128     84.72        24%
+       1,024     256     90.72        24%
+       1,024     512     82.66        25%
+       1,024    1024     83.01        26%
+       2,048    2048     82.47        55%
+       4,096      32     87.70        93%
+       4,096      64     83.96        94%
+       4,096     128     85.84        94%
+       4,096     256     86.33        94%
+       4,096     512     87.89        95%
+       4,096    1024     88.81        97%
+       4,096    2048     92.86       100%
+       8,192      32    177.07        93%
+       8,192      64    171.50        93%
+       8,192     128    170.28        94%
+       8,192     256    171.27        95%
+       8,192     512    173.00        96%
+       8,192    1024    178.16        97%
+       8,192    2048    188.50        99%
+      16,384      32    375.23        87%
+      16,384      64    364.34        88%
+      16,384     128    364.74        88%
+      16,384     256    364.99        89%
+      16,384     512    365.88        91%
+      16,384    1024    375.27        92%
+      16,384    2048    396.25        94%
+    efficiency = share of the GPU's best measured speed; small batches waste the rest
+  grad sync  all-reduce of 1,248 MB fp32 gradients: 163.2 ms (bus 7.6 GB/s)
+             exposed after DDP's overlap with the backward pass: 83% after a 70 ms batch, 100% after a 71 ms batch, 75% after a 83 ms batch, 40% after a 173 ms batch, 15% after a 369 ms batch
+  optimizer  AdamW step 10.2 ms
+  power      411 W per GPU under load
+  memory     every batch fit, up to 16,384 padded tokens per GPU
+
+written to /root/out/probe_large.json
+== 14:15:03 probe 7B shape
+W1102 14:15:05.472000 762 torch/distributed/run.py:982] 
+W1102 14:15:05.472000 762 torch/distributed/run.py:982] *****************************************
+W1102 14:15:05.472000 762 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 14:15:05.472000 762 torch/distributed/run.py:982] *****************************************
+evencut probe: 2 rank(s) on cuda; model 32x4096, vocab 32000 (timing 2 layers)
+  timed 33 batch shapes, 2 rounds
+Evencut probe: 2x NVIDIA GeForce RTX 4090, 47.4 GB (46.9 GB free)
+  links      PXB (slowest PXB); peer-to-peer: none
+  model      32 layers x 4096 wide, vocab 32000: 6,581.9M weights (timed 2 layers, scaled)
+  compute    bf16 matmul 147.3 TFLOPS per GPU (range 147.0-147.7)
+  stragglers slowest GPU 1.0% behind the fastest
+  one micro-batch, forward + backward (slowest GPU):
+      tokens  length        ms  efficiency
+          32      32    166.36         6%
+          64      64    168.96        12%
+         128     128    170.28        24%
+         256     256    197.01        42%
+         512     512    268.90        62%
+       1,024      32    419.01        79%
+       1,024      64    417.46        79%
+       1,024     128    415.48        79%
+       1,024     256    417.38        80%
+       1,024     512    418.63        80%
+       1,024    1024    421.91        80%
+       2,048    2048    753.04        91%
+       4,096      32   1368.28        97%
+       4,096      64   1357.13        97%
+       4,096     128   1355.26        97%
+       4,096     256   1357.88        98%
+       4,096     512   1363.06        98%
+       4,096    1024   1372.42        98%
+       4,096    2048   1402.42        98%
+       8,192      32   2699.65        99%
+       8,192      64   2680.13        99%
+       8,192     128   2668.69        99%
+       8,192     256   2675.89        99%
+       8,192     512   2687.23        99%
+       8,192    1024   2715.48        99%
+       8,192    2048   2760.56       100%
+      16,384      32   5360.12        99%
+      16,384      64   5321.24        99%
+      16,384     128   5327.90        99%
+      16,384     256   5312.95       100%
+      16,384     512   5344.75       100%
+      16,384    1024   5390.86       100%
+      16,384    2048   5504.39       100%
+    efficiency = share of the GPU's best measured speed; small batches waste the rest
+  grad sync  all-reduce of 26,328 MB fp32 gradients: 6313.3 ms (bus 4.7 GB/s)
+             exposed after DDP's overlap with the backward pass: 57% after a 425 ms batch, 78% after a 760 ms batch, 50% after a 1370 ms batch, 43% after a 2658 ms batch, 33% after a 5287 ms batch
+  optimizer  AdamW step 205.2 ms
+  power      445 W per GPU under load
+  memory     every batch fit, up to 16,384 padded tokens per GPU
+  note: measured with 2 of 32 layers; times scaled by the FLOP ratio
+
+written to /root/out/probe_7b.json
+== 14:16:41 TinyStories 310M accumulation 4
+W1102 14:16:43.354000 1111 torch/distributed/run.py:982] 
+W1102 14:16:43.354000 1111 torch/distributed/run.py:982] *****************************************
+W1102 14:16:43.354000 1111 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 14:16:43.354000 1111 torch/distributed/run.py:982] *****************************************
+transformers not installed: no Hugging Face batch_rebalance row
+transformers not installed: no Hugging Face batch_rebalance row
+TinyStories-Turkish: 2 x NVIDIA GeForce RTX 4090, backend nccl, model large (312.0M params), gradient all-reduce 162.9 ms
+noise floor     identical slices                              step   490.8 ms      39,938 tok/s  padding  28.1%
+random          equal counts                                  step   513.3 ms      38,072 tok/s  padding  27.8%
+random          Evencut, balanced padded size                 step   458.7 ms      42,599 tok/s  padding  27.6%
+random          Evencut, whole optimizer step balanced (window) step   491.3 ms      39,775 tok/s  padding   5.3%
+Written to /root/out/ddp_tinystories_large_accum4.md
+== 14:17:09 Wikipedia 310M
+W1102 14:17:11.506000 1272 torch/distributed/run.py:982] 
+W1102 14:17:11.506000 1272 torch/distributed/run.py:982] *****************************************
+W1102 14:17:11.506000 1272 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 14:17:11.506000 1272 torch/distributed/run.py:982] *****************************************
+Wikipedia-TR: 2 x NVIDIA GeForce RTX 4090, backend nccl, model large (312.0M params), gradient all-reduce 200.8 ms
+noise floor     identical slices                              step   241.8 ms      17,404 tok/s  padding  51.9%
+random          equal counts                                  step   345.6 ms      19,396 tok/s  padding  63.2%
+random          Evencut, balanced padded size                 step   302.9 ms      22,126 tok/s  padding  61.9%
+Written to /root/out/ddp_wikipedia_large.md
+== 14:17:48 ALLDONE

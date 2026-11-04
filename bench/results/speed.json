@@ -1,0 +1,315 @@
+{
+ "evencut": "1.0.0",
+ "machine": "AMD Ryzen 5 5600 6-Core Processor, Windows 11, Python 3.13.6",
+ "date": "2026-11-01",
+ "ks": [
+  64,
+  4096
+ ],
+ "datasets": [
+  {
+   "name": "psmigr_1",
+   "field": "economics (inter-county migration)",
+   "n": 3140,
+   "cpp_ms": {
+    "min_max k=64": 0.026,
+    "min_max k=4096": 0.767,
+    "sum_squares k=64": 0.59,
+    "sum_squares k=4096": 0.078
+   },
+   "python_ms": {
+    "min_max k=64": 0.3356000015628524,
+    "sum_squares k=64": 1.0811999964062124,
+    "min_max k=4096": 2.180800001951866,
+    "sum_squares k=4096": 1.3445000004139729
+   },
+   "pure_ms": {
+    "min_max k=64": 1.6856000002007931,
+    "sum_squares k=64": 24.226900000940077
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 0.25740000273799524,
+    "min_max bisection k=4096": 0.6716999996569939,
+    "sum_squares textbook DP k=64": 14.179799996782094,
+    "sum_squares plain DP k=64": 310.6448999969871
+   }
+  },
+  {
+   "name": "bcsstk17",
+   "field": "structural engineering",
+   "n": 10974,
+   "cpp_ms": {
+    "min_max k=64": 0.093,
+    "min_max k=4096": 1.995,
+    "sum_squares k=64": 1.476,
+    "sum_squares k=4096": 2.489
+   },
+   "python_ms": {
+    "min_max k=64": 0.6551999977091327,
+    "sum_squares k=64": 2.2383999967132695,
+    "min_max k=4096": 3.260799996496644,
+    "sum_squares k=4096": 4.369400005089119
+   },
+   "pure_ms": {
+    "min_max k=64": 2.9144000000087544,
+    "sum_squares k=64": 81.08660000289092
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 0.7666000019526109,
+    "min_max bisection k=4096": 6.991200003540143,
+    "sum_squares textbook DP k=64": 21.389499997894745,
+    "sum_squares plain DP k=64": 3767.3247000057017
+   }
+  },
+  {
+   "name": "memplus",
+   "field": "circuit simulation (memory chip)",
+   "n": 17758,
+   "cpp_ms": {
+    "min_max k=64": 0.152,
+    "min_max k=4096": 2.544,
+    "sum_squares k=64": 2.6,
+    "sum_squares k=4096": 3.359
+   },
+   "python_ms": {
+    "min_max k=64": 0.8327000032295473,
+    "sum_squares k=64": 3.7041000032331795,
+    "min_max k=4096": 3.8787000012234785,
+    "sum_squares k=4096": 5.445000002509914
+   },
+   "pure_ms": {
+    "min_max k=64": 5.08369999442948,
+    "sum_squares k=64": 142.73050000338117
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 0.6184000012581237,
+    "min_max bisection k=4096": 0.9932999964803457,
+    "sum_squares textbook DP k=64": 30.418599999393336
+   }
+  },
+  {
+   "name": "af23560",
+   "field": "fluid dynamics (airfoil)",
+   "n": 23560,
+   "cpp_ms": {
+    "min_max k=64": 0.158,
+    "min_max k=4096": 1.487,
+    "sum_squares k=64": 2.448,
+    "sum_squares k=4096": 3.691
+   },
+   "python_ms": {
+    "min_max k=64": 0.9671000007074326,
+    "sum_squares k=64": 3.7454000048455782,
+    "min_max k=4096": 3.1319999980041757,
+    "sum_squares k=4096": 6.093500000133645
+   },
+   "pure_ms": {
+    "min_max k=64": 6.114499999966938,
+    "sum_squares k=64": 136.15279999794438
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 0.8310999983223155,
+    "min_max bisection k=4096": 7.0111000022734515,
+    "sum_squares textbook DP k=64": 34.6235999968485
+   }
+  },
+  {
+   "name": "bcsstk30",
+   "field": "structural engineering",
+   "n": 28924,
+   "cpp_ms": {
+    "min_max k=64": 0.098,
+    "min_max k=4096": 1.819,
+    "sum_squares k=64": 4.662,
+    "sum_squares k=4096": 7.454
+   },
+   "python_ms": {
+    "min_max k=64": 1.491299997724127,
+    "sum_squares k=64": 6.730199995217845,
+    "min_max k=4096": 3.749300005438272,
+    "sum_squares k=4096": 11.128999998618383
+   },
+   "pure_ms": {
+    "min_max k=64": 7.319399999687448,
+    "sum_squares k=64": 250.67600000329548
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 1.0671000054571778,
+    "min_max bisection k=4096": 9.219200001098216,
+    "sum_squares textbook DP k=64": 44.92770000069868
+   }
+  },
+  {
+   "name": "amazon0601",
+   "field": "co-purchase network",
+   "n": 403394,
+   "cpp_ms": {
+    "min_max k=64": 1.813,
+    "min_max k=4096": 10.259,
+    "sum_squares k=64": 61.6,
+    "sum_squares k=4096": 96.609
+   },
+   "python_ms": {
+    "min_max k=64": 15.221699999528937,
+    "sum_squares k=64": 89.13619999657385,
+    "min_max k=4096": 26.02119999937713,
+    "sum_squares k=4096": 132.20790000195848
+   },
+   "pure_ms": {
+    "min_max k=64": 101.86629999952856,
+    "sum_squares k=64": 3553.5871000029147
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 16.42159999755677,
+    "min_max bisection k=4096": 28.75619999394985,
+    "sum_squares textbook DP k=64": 608.1348000006983
+   }
+  },
+  {
+   "name": "web-Google",
+   "field": "web graph",
+   "n": 875713,
+   "cpp_ms": {
+    "min_max k=64": 3.716,
+    "min_max k=4096": 22.185,
+    "sum_squares k=64": 153.229,
+    "sum_squares k=4096": 269.676
+   },
+   "python_ms": {
+    "min_max k=64": 33.208799999556504,
+    "sum_squares k=64": 228.72060000372585,
+    "min_max k=4096": 60.113399995316286,
+    "sum_squares k=4096": 338.46409999387106
+   },
+   "pure_ms": {
+    "min_max k=64": 218.86950000043726,
+    "sum_squares k=64": 6737.679099998786
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 39.2682000019704,
+    "min_max bisection k=4096": 57.60780000127852,
+    "sum_squares textbook DP k=64": 1501.5110000022105
+   }
+  },
+  {
+   "name": "roadNet-CA",
+   "field": "road network",
+   "n": 1965206,
+   "cpp_ms": {
+    "min_max k=64": 9.223,
+    "min_max k=4096": 23.961,
+    "sum_squares k=64": 310.227,
+    "sum_squares k=4096": 509.239
+   },
+   "python_ms": {
+    "min_max k=64": 75.7891999965068,
+    "sum_squares k=64": 447.3744999995688,
+    "min_max k=4096": 92.4855999983265,
+    "sum_squares k=4096": 649.958300004073
+   },
+   "pure_ms": {
+    "min_max k=64": 478.7670000005164,
+    "sum_squares k=64": 17670.404600001348
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 85.13870000024326,
+    "min_max bisection k=4096": 108.03779999696417,
+    "sum_squares textbook DP k=64": 3457.4379999976372
+   }
+  },
+  {
+   "name": "wiki-Talk",
+   "field": "communication network",
+   "n": 2394385,
+   "cpp_ms": {
+    "min_max k=64": 11.439,
+    "min_max k=4096": 29.889,
+    "sum_squares k=64": 201.274,
+    "sum_squares k=4096": 284.436
+   },
+   "python_ms": {
+    "min_max k=64": 93.91329999925802,
+    "sum_squares k=64": 317.15540000004694,
+    "min_max k=4096": 120.16630000289297,
+    "sum_squares k=4096": 400.6277000007685
+   },
+   "pure_ms": {
+    "min_max k=64": 678.5803000020678,
+    "sum_squares k=64": 12126.942200004123
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 103.09609999967506,
+    "min_max bisection k=4096": 107.45519999909448,
+    "sum_squares textbook DP k=64": 5065.630800003419
+   }
+  },
+  {
+   "name": "cit-Patents",
+   "field": "citation network",
+   "n": 3774768,
+   "cpp_ms": {
+    "min_max k=64": 18.236,
+    "min_max k=4096": 33.645,
+    "sum_squares k=64": 505.97,
+    "sum_squares k=4096": 808.763
+   },
+   "python_ms": {
+    "min_max k=64": 148.7526999990223,
+    "sum_squares k=64": 723.3347999936086,
+    "min_max k=4096": 172.44149999896763,
+    "sum_squares k=4096": 1028.3495999974548
+   },
+   "pure_ms": {
+    "min_max k=64": 890.2061999979196,
+    "sum_squares k=64": 23225.632299996505
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 133.94619999598945,
+    "min_max bisection k=4096": 157.99859999970067,
+    "sum_squares textbook DP k=64": 6814.653800000087
+   }
+  },
+  {
+   "name": "uniform-10M",
+   "field": "synthetic: uniform 1..1000",
+   "n": 10000000,
+   "cpp_ms": {
+    "min_max k=64": 47.859,
+    "min_max k=4096": 72.125,
+    "sum_squares k=64": 1332.843,
+    "sum_squares k=4096": 2451.339
+   },
+   "python_ms": {
+    "min_max k=64": 567.2524999972666,
+    "sum_squares k=64": 2264.2835000006016,
+    "min_max k=4096": 613.9107999988482,
+    "sum_squares k=4096": 3529.303000002983
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 579.0307999996003,
+    "min_max bisection k=4096": 635.2728999991086
+   }
+  },
+  {
+   "name": "heavy-tail-10M",
+   "field": "synthetic: log-normal, sigma 1.5",
+   "n": 10000000,
+   "cpp_ms": {
+    "min_max k=64": 48.833,
+    "min_max k=4096": 76.681,
+    "sum_squares k=64": 1343.762,
+    "sum_squares k=4096": 3083.272
+   },
+   "python_ms": {
+    "min_max k=64": 604.3487999995705,
+    "sum_squares k=64": 2340.0276000029407,
+    "min_max k=4096": 612.8110999998171,
+    "sum_squares k=4096": 4165.684400002647
+   },
+   "alternatives_ms": {
+    "min_max bisection k=64": 598.4637000001385,
+    "min_max bisection k=4096": 679.4380999999703
+   }
+  }
+ ]
+}

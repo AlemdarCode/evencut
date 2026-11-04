@@ -1,0 +1,204 @@
+index, name, memory.total [MiB], driver_version, power.limit [W]
+0, NVIDIA A100-SXM4-40GB, 40960 MiB, 580.159.03, 370.00 W
+1, NVIDIA A100-SXM4-40GB, 40960 MiB, 580.159.03, 370.00 W
+== 11:02:54 dry run
+W1102 11:02:56.698000 316 torch/distributed/run.py:982] 
+W1102 11:02:56.698000 316 torch/distributed/run.py:982] *****************************************
+W1102 11:02:56.698000 316 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 11:02:56.698000 316 torch/distributed/run.py:982] *****************************************
+dry-run: 2 x NVIDIA A100-SXM4-40GB, backend nccl, model small (29.9M params), gradient all-reduce 9.0 ms
+noise floor     identical slices                              step    32.3 ms     293,471 tok/s  padding  30.5%
+random          equal counts                                  step    35.1 ms     278,509 tok/s  padding  32.9%
+random          Evencut, balanced tokens                      step    35.0 ms     279,677 tok/s  padding  33.0%
+random          Evencut, balanced padded size                 step    37.6 ms     260,440 tok/s  padding  32.5%
+length-grouped  equal counts                                  step    41.0 ms     238,333 tok/s  padding  22.0%
+length-grouped  Evencut, balanced tokens                      step    41.3 ms     236,899 tok/s  padding  20.4%
+length-grouped  Evencut, balanced padded size                 step    41.7 ms     234,349 tok/s  padding  20.1%
+any order       LPT on padded size (not contiguous)           step    41.6 ms     235,247 tok/s  padding  32.5%
+sorted dataset  token budget per GPU (fairseq-style)          step    41.7 ms     234,304 tok/s  padding   7.6%
+sorted dataset  Evencut, padded_slices over the sorted data   step    46.7 ms     209,488 tok/s  padding   7.6%
+Written to /root/out/dry_run.md
+== 11:03:07 probe small model
+W1102 11:03:09.737000 412 torch/distributed/run.py:982] 
+W1102 11:03:09.737000 412 torch/distributed/run.py:982] *****************************************
+W1102 11:03:09.737000 412 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 11:03:09.737000 412 torch/distributed/run.py:982] *****************************************
+evencut probe: 2 rank(s) on cuda; model 8x512, vocab 8192
+  timed 33 batch shapes, 3 rounds
+Evencut probe: 2x NVIDIA A100-SXM4-40GB, 39.5 GB (39.0 GB free)
+  links      SYS (slowest SYS); peer-to-peer: all
+  model      8 layers x 512 wide, vocab 8192: 29.9M weights
+  compute    bf16 matmul 209.7 TFLOPS per GPU (range 209.5-209.9)
+  stragglers slowest GPU 2.6% behind the fastest
+  one micro-batch, forward + backward (slowest GPU):
+      tokens  length        ms  efficiency
+          32      32     35.58         0%
+          64      64     35.64         0%
+         128     128     31.75         1%
+         256     256     35.09         2%
+         512     512     35.33         4%
+       1,024      32     35.11         7%
+       1,024      64     35.11         7%
+       1,024     128     35.11         7%
+       1,024     256     35.09         7%
+       1,024     512     35.06         7%
+       1,024    1024     33.94         8%
+       2,048    2048     35.37        18%
+       4,096      32     34.52        28%
+       4,096      64     35.76        27%
+       4,096     128     35.85        28%
+       4,096     256     35.87        28%
+       4,096     512     35.89        29%
+       4,096    1024     35.55        31%
+       4,096    2048     35.86        35%
+       8,192      32     36.30        54%
+       8,192      64     36.25        54%
+       8,192     128     36.19        54%
+       8,192     256     36.20        55%
+       8,192     512     36.08        57%
+       8,192    1024     36.24        61%
+       8,192    2048     36.17        69%
+      16,384      32     48.78        85%
+      16,384      64     45.73        85%
+      16,384     128     44.59        86%
+      16,384     256     44.72        88%
+      16,384     512     44.96        91%
+      16,384    1024     46.44        95%
+      16,384    2048     49.61       100%
+    efficiency = share of the GPU's best measured speed; small batches waste the rest
+  grad sync  all-reduce of 120 MB fp32 gradients: 8.7 ms (bus 13.8 GB/s)
+             DDP hides 19% of the last micro-batch's time worth of it (measured on 3 real DDP steps)
+  optimizer  AdamW step 1.0 ms
+  power      290 W per GPU under load
+  memory     every batch fit, up to 16,384 padded tokens per GPU
+
+written to /root/out/probe_small.json
+== 11:03:41 probe base model
+W1102 11:03:43.523000 539 torch/distributed/run.py:982] 
+W1102 11:03:43.523000 539 torch/distributed/run.py:982] *****************************************
+W1102 11:03:43.523000 539 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 11:03:43.523000 539 torch/distributed/run.py:982] *****************************************
+evencut probe: 2 rank(s) on cuda; model 12x768, vocab 8192
+  timed 33 batch shapes, 3 rounds
+Evencut probe: 2x NVIDIA A100-SXM4-40GB, 39.5 GB (39.0 GB free)
+  links      SYS (slowest SYS); peer-to-peer: all
+  model      12 layers x 768 wide, vocab 8192: 91.2M weights
+  compute    bf16 matmul 209.7 TFLOPS per GPU (range 209.5-209.9)
+  stragglers slowest GPU 1.7% behind the fastest
+  one micro-batch, forward + backward (slowest GPU):
+      tokens  length        ms  efficiency
+          32      32     42.88         0%
+          64      64     48.07         1%
+         128     128     47.40         2%
+         256     256     48.10         3%
+         512     512     47.32         7%
+       1,024      32     45.82        13%
+       1,024      64     42.48        13%
+       1,024     128     46.35        13%
+       1,024     256     42.73        13%
+       1,024     512     43.09        13%
+       1,024    1024     42.46        14%
+       2,048    2048     46.99        30%
+       4,096      32     43.11        50%
+       4,096      64     43.30        50%
+       4,096     128     47.44        50%
+       4,096     256     43.17        51%
+       4,096     512     48.10        52%
+       4,096    1024     43.31        55%
+       4,096    2048     47.70        57%
+       8,192      32     56.14        85%
+       8,192      64     52.82        85%
+       8,192     128     55.11        86%
+       8,192     256     50.92        87%
+       8,192     512     51.88        89%
+       8,192    1024     53.49        93%
+       8,192    2048     57.20        95%
+      16,384      32    107.72        90%
+      16,384      64    100.90        90%
+      16,384     128     97.17        91%
+      16,384     256     97.54        92%
+      16,384     512     98.93        95%
+      16,384    1024    102.33        97%
+      16,384    2048    108.97       100%
+    efficiency = share of the GPU's best measured speed; small batches waste the rest
+  grad sync  all-reduce of 365 MB fp32 gradients: 26.3 ms (bus 13.9 GB/s)
+             DDP hides 16% of the last micro-batch's time worth of it (measured on 3 real DDP steps)
+  optimizer  AdamW step 2.4 ms
+  power      323 W per GPU under load
+  memory     every batch fit, up to 16,384 padded tokens per GPU
+
+written to /root/out/probe_base.json
+== 11:04:28 TinyStories small
+W1102 11:04:30.765000 666 torch/distributed/run.py:982] 
+W1102 11:04:30.765000 666 torch/distributed/run.py:982] *****************************************
+W1102 11:04:30.765000 666 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 11:04:30.765000 666 torch/distributed/run.py:982] *****************************************
+TinyStories-Turkish: 2 x NVIDIA A100-SXM4-40GB, backend nccl, model small (29.9M params), gradient all-reduce 9.0 ms
+noise floor     identical slices                              step    40.3 ms     234,831 tok/s  padding  30.5%
+random          equal counts                                  step    43.2 ms     226,636 tok/s  padding  31.1%
+random          Evencut, balanced tokens                      step    42.8 ms     228,809 tok/s  padding  31.1%
+random          Evencut, balanced padded size                 step    42.2 ms     231,669 tok/s  padding  30.4%
+length-grouped  equal counts                                  step    42.1 ms     232,692 tok/s  padding  20.8%
+length-grouped  Evencut, balanced tokens                      step    41.6 ms     235,191 tok/s  padding  19.5%
+length-grouped  Evencut, balanced padded size                 step    42.0 ms     233,152 tok/s  padding  18.6%
+any order       LPT on padded size (not contiguous)           step    42.0 ms     232,737 tok/s  padding  31.4%
+sorted dataset  token budget per GPU (fairseq-style)          step    41.7 ms     234,746 tok/s  padding   1.1%
+sorted dataset  Evencut, padded_slices over the sorted data   step    41.3 ms     236,865 tok/s  padding   1.1%
+Written to /root/out/ddp_tinystories.md
+== 11:05:16 Dolly small accumulation 8
+W1102 11:05:18.597000 762 torch/distributed/run.py:982] 
+W1102 11:05:18.597000 762 torch/distributed/run.py:982] *****************************************
+W1102 11:05:18.597000 762 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 11:05:18.597000 762 torch/distributed/run.py:982] *****************************************
+transformers not installed: no Hugging Face batch_rebalance row
+transformers not installed: no Hugging Face batch_rebalance row
+Dolly-15k: 2 x NVIDIA A100-SXM4-40GB, backend nccl, model small (29.9M params), gradient all-reduce 8.8 ms
+noise floor     identical slices                              step   294.7 ms     141,498 tok/s  padding  63.5%
+random          equal counts                                  step   310.7 ms     133,433 tok/s  padding  73.1%
+random          Evencut, balanced tokens                      step   307.8 ms     134,691 tok/s  padding  73.3%
+random          Evencut, balanced padded size                 step   308.3 ms     134,441 tok/s  padding  72.1%
+length-grouped  equal counts                                  step   307.7 ms     134,724 tok/s  padding  61.9%
+length-grouped  Evencut, balanced tokens                      step   300.3 ms     138,042 tok/s  padding  53.2%
+length-grouped  Evencut, balanced padded size                 step   303.9 ms     136,421 tok/s  padding  50.5%
+any order       LPT on padded size (not contiguous)           step   309.7 ms     133,830 tok/s  padding  74.1%
+sorted dataset  token budget per GPU (fairseq-style)          step   295.0 ms     140,498 tok/s  padding   1.3%
+sorted dataset  Evencut, padded_slices over the sorted data   step   296.2 ms     139,973 tok/s  padding   1.3%
+random          Evencut, whole optimizer step balanced (window) step   297.4 ms     139,409 tok/s  padding   9.8%
+pooled (like group_by_length) Hugging Face group_by_length                  step   292.6 ms     141,671 tok/s  padding   1.7%
+pooled (like group_by_length) Evencut, length-grouped steps + balanced      step   291.0 ms     142,455 tok/s  padding   1.8%
+Written to /root/out/ddp_dolly_accum8.md
+== 11:06:50 Dolly base accumulation 4
+W1102 11:06:52.833000 858 torch/distributed/run.py:982] 
+W1102 11:06:52.833000 858 torch/distributed/run.py:982] *****************************************
+W1102 11:06:52.833000 858 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 11:06:52.833000 858 torch/distributed/run.py:982] *****************************************
+Dolly-15k: 2 x NVIDIA A100-SXM4-40GB, backend nccl, model base (91.2M params), gradient all-reduce 26.1 ms
+noise floor     identical slices                              step   293.4 ms      95,475 tok/s  padding  67.3%
+random          equal counts                                  step   467.0 ms      64,617 tok/s  padding  76.7%
+random          Evencut, balanced tokens                      step   438.0 ms      68,898 tok/s  padding  76.1%
+random          Evencut, balanced padded size                 step   417.0 ms      72,365 tok/s  padding  75.5%
+length-grouped  equal counts                                  step   507.1 ms      59,515 tok/s  padding  65.9%
+length-grouped  Evencut, balanced tokens                      step   274.0 ms     110,155 tok/s  padding  55.4%
+length-grouped  Evencut, balanced padded size                 step   241.5 ms     124,956 tok/s  padding  54.1%
+any order       LPT on padded size (not contiguous)           step   441.1 ms      68,418 tok/s  padding  77.7%
+sorted dataset  token budget per GPU (fairseq-style)          step   200.0 ms     150,881 tok/s  padding   2.5%
+sorted dataset  Evencut, padded_slices over the sorted data   step   203.5 ms     148,317 tok/s  padding   2.5%
+Written to /root/out/ddp_dolly_base_accum4.md
+== 11:08:18 Wikipedia small
+W1102 11:08:20.102000 1006 torch/distributed/run.py:982] 
+W1102 11:08:20.102000 1006 torch/distributed/run.py:982] *****************************************
+W1102 11:08:20.102000 1006 torch/distributed/run.py:982] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1102 11:08:20.102000 1006 torch/distributed/run.py:982] *****************************************
+Wikipedia-TR: 2 x NVIDIA A100-SXM4-40GB, backend nccl, model small (29.9M params), gradient all-reduce 9.1 ms
+noise floor     identical slices                              step    40.6 ms     103,625 tok/s  padding  51.9%
+random          equal counts                                  step    45.9 ms     140,037 tok/s  padding  62.7%
+random          Evencut, balanced tokens                      step    47.2 ms     136,134 tok/s  padding  62.5%
+random          Evencut, balanced padded size                 step    44.9 ms     143,100 tok/s  padding  60.5%
+length-grouped  equal counts                                  step    46.7 ms     137,764 tok/s  padding  48.8%
+length-grouped  Evencut, balanced tokens                      step    45.4 ms     141,586 tok/s  padding  51.1%
+length-grouped  Evencut, balanced padded size                 step    42.3 ms     152,016 tok/s  padding  40.3%
+any order       LPT on padded size (not contiguous)           step    44.5 ms     144,328 tok/s  padding  61.8%
+sorted dataset  token budget per GPU (fairseq-style)          step    41.4 ms     155,316 tok/s  padding   2.2%
+sorted dataset  Evencut, padded_slices over the sorted data   step    41.9 ms     153,334 tok/s  padding   2.2%
+Written to /root/out/ddp_wikipedia.md
+== 11:09:07 ALLDONE

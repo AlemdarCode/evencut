@@ -1,0 +1,114 @@
+index, name, memory.total [MiB], driver_version, power.limit [W]
+0, NVIDIA A100-SXM4-40GB, 40960 MiB, 580.173.02, 400.00 W
+== 13:39:03 probe 310M model
+evencut probe: 1 rank(s) on cuda; model 24x1024, vocab 8192
+  timed 33 batch shapes, 2 rounds
+Evencut probe: 1x NVIDIA A100-SXM4-40GB, 39.5 GB (39.0 GB free)
+  model      24 layers x 1024 wide, vocab 8192: 312.0M weights
+  compute    bf16 matmul 209.7 TFLOPS per GPU
+  one micro-batch, forward + backward (slowest GPU):
+      tokens  length        ms  efficiency
+          32      32     33.24         2%
+          64      64     32.92         3%
+         128     128     32.69         6%
+         256     256     32.69        13%
+         512     512     32.83        26%
+       1,024      32     32.58        50%
+       1,024      64     32.56        51%
+       1,024     128     32.51        51%
+       1,024     256     32.64        51%
+       1,024     512     32.66        52%
+       1,024    1024     32.59        54%
+       2,048    2048     51.33        75%
+       4,096      32     89.31        78%
+       4,096      64     84.58        79%
+       4,096     128     81.88        79%
+       4,096     256     82.14        80%
+       4,096     512     83.39        81%
+       4,096    1024     86.07        83%
+       4,096    2048     91.33        84%
+       8,192      32    160.06        88%
+       8,192      64    150.76        88%
+       8,192     128    145.85        89%
+       8,192     256    146.36        89%
+       8,192     512    148.32        91%
+       8,192    1024    153.05        93%
+       8,192    2048    162.35        94%
+      16,384      32    301.74        93%
+      16,384      64    282.99        94%
+      16,384     128    274.09        94%
+      16,384     256    275.61        95%
+      16,384     512    278.68        97%
+      16,384    1024    288.04        99%
+      16,384    2048    305.95       100%
+    efficiency = share of the GPU's best measured speed; small batches waste the rest
+  grad sync  one GPU: none measured (run with torchrun on all GPUs for multi-GPU)
+  optimizer  AdamW step 7.3 ms
+  power      378 W per GPU under load
+  memory     every batch fit, up to 16,384 padded tokens per GPU
+
+written to /root/out/probe_large.json
+== 13:39:56 probe 7B shape
+evencut probe: 1 rank(s) on cuda; model 32x4096, vocab 32000 (timing 2 layers)
+  timed 33 batch shapes, 2 rounds
+Evencut probe: 1x NVIDIA A100-SXM4-40GB, 39.5 GB (39.0 GB free)
+  model      32 layers x 4096 wide, vocab 32000: 6,581.9M weights (timed 2 layers, scaled)
+  compute    bf16 matmul 209.7 TFLOPS per GPU
+  one micro-batch, forward + backward (slowest GPU):
+      tokens  length        ms  efficiency
+          32      32    129.63         5%
+          64      64    132.85        10%
+         128     128    141.57        19%
+         256     256    154.51        34%
+         512     512    202.80        53%
+       1,024      32    313.21        69%
+       1,024      64    308.10        69%
+       1,024     128    305.45        69%
+       1,024     256    305.38        69%
+       1,024     512    306.64        69%
+       1,024    1024    310.53        69%
+       2,048    2048    528.59        83%
+       4,096      32    945.30        91%
+       4,096      64    930.56        91%
+       4,096     128    921.88        91%
+       4,096     256    923.33        91%
+       4,096     512    926.47        92%
+       4,096    1024    937.62        92%
+       4,096    2048    961.79        91%
+       8,192      32   1797.76        96%
+       8,192      64   1756.31        96%
+       8,192     128   1741.28        96%
+       8,192     256   1747.51        96%
+       8,192     512   1763.30        97%
+       8,192    1024   1783.70        96%
+       8,192    2048   1823.74        96%
+      16,384      32   3484.16        99%
+      16,384      64   3405.16        99%
+      16,384     128   3376.20        99%
+      16,384     256   3382.65        99%
+      16,384     512   3400.85       100%
+      16,384    1024   3442.32       100%
+      16,384    2048   3537.93        99%
+    efficiency = share of the GPU's best measured speed; small batches waste the rest
+  grad sync  one GPU: none measured (run with torchrun on all GPUs for multi-GPU)
+  optimizer  AdamW step 146.7 ms
+  power      392 W per GPU under load
+  memory     every batch fit, up to 16,384 padded tokens per GPU
+  note: measured with 2 of 32 layers; times scaled by the FLOP ratio
+
+written to /root/out/probe_7b.json
+== 13:40:44 TinyStories 310M accumulation 4
+transformers not installed: no Hugging Face batch_rebalance row
+TinyStories-Turkish: 1 x NVIDIA A100-SXM4-40GB, backend nccl, model large (312.0M params), gradient all-reduce 0.0 ms
+noise floor     identical slices                              step   277.2 ms      35,353 tok/s  padding  28.1%
+random          equal counts                                  step   288.4 ms      34,237 tok/s  padding  27.8%
+random          Evencut, balanced padded size                 step   288.5 ms      34,232 tok/s  padding  27.8%
+random          Evencut, whole optimizer step balanced (window) step   245.6 ms      40,203 tok/s  padding   9.4%
+Written to /root/out/ddp_tinystories_large_accum4.md
+== 13:40:59 Wikipedia 310M
+Wikipedia-TR: 1 x NVIDIA A100-SXM4-40GB, backend nccl, model large (312.0M params), gradient all-reduce 0.0 ms
+noise floor     identical slices                              step    97.9 ms      21,499 tok/s  padding  51.9%
+random          equal counts                                  step   164.2 ms      17,986 tok/s  padding  63.0%
+random          Evencut, balanced padded size                 step   165.1 ms      17,892 tok/s  padding  63.0%
+Written to /root/out/ddp_wikipedia_large.md
+== 13:41:19 ALLDONE

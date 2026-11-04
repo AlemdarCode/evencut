@@ -1,0 +1,100 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-01",
+ "dataset": "Dolly-15k",
+ "gpus": 8,
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+ "model": "base",
+ "params": 91245312,
+ "allreduce_ms": 196.59062940627337,
+ "seq_len": 1024,
+ "global_batch": 192,
+ "steps": 40,
+ "accum": 4,
+ "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tGPU4\tGPU5\tGPU6\tGPU7\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tPIX\tPXB\tPXB\tNODE\tNODE\tNODE\tNODE\t0-27,56-83\t0\t\tN/A\nGPU1\tPIX\t X \tPXB\tPXB\tNODE\tNODE\tNODE\tNODE\t0-27,56-83\t0\t\tN/A\nGPU2\tPXB\tPXB\t X \tPXB\tNODE\tNODE\tNODE\tNODE\t0-27,56-83\t0\t\tN/A\nGPU3\tPXB\tPXB\tPXB\t X \tNODE\tNODE\tNODE\tNODE\t0-27,56-83\t0\t\tN/A\nGPU4\tNODE\tNODE\tNODE\tNODE\t X \tPIX\tPXB\tPXB\t0-27,56-83\t0\t\tN/A\nGPU5\tNODE\tNODE\tNODE\tNODE\tPIX\t X \tPXB\tPXB\t0-27,56-83\t0\t\tN/A\nGPU6\tNODE\tNODE\tNODE\tNODE\tPXB\tPXB\t X \tPXB\t0-27,56-83\t0\t\tN/A\nGPU7\tNODE\tNODE\tNODE\tNODE\tPXB\tPXB\tPXB\t X \t0-27,56-83\t0\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+ "args": {
+  "lengths": "/root/run/data/dolly15k_gpt2.txt",
+  "offset": "0",
+  "name": "Dolly-15k",
+  "seq_len": "1024",
+  "vocab": "8192",
+  "model": "base",
+  "global_batch": "192",
+  "steps": "40",
+  "warmup": "5",
+  "accum": "4",
+  "repeats": "2",
+  "seed": "20261101",
+  "out_dir": "/root/run/evencut/bench/results",
+  "out_name": "ddp_batches_dolly_base_accum4"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 462.0562607073225,
+   "tokens_per_s": 242463.9800973582,
+   "wasted": 0.6729260089686099
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 762.7488192985766,
+   "tokens_per_s": 166435.2625504443,
+   "wasted": 0.7660170349989384
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 746.1490000016056,
+   "tokens_per_s": 170138.0019268629,
+   "wasted": 0.7649101637391618
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 642.3391440184787,
+   "tokens_per_s": 197634.38236974078,
+   "wasted": 0.7535159637198598
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 852.5164932478219,
+   "tokens_per_s": 148910.08092566815,
+   "wasted": 0.3225955689312928
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 384.307508810889,
+   "tokens_per_s": 330330.0015989775,
+   "wasted": 0.20486656987559548
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 374.7304092044942,
+   "tokens_per_s": 338772.3464169758,
+   "wasted": 0.19052167575415757
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 377.9890969977714,
+   "tokens_per_s": 335851.750773511,
+   "wasted": 0.005990757430308746
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 376.6623309580609,
+   "tokens_per_s": 337034.76447220024,
+   "wasted": 0.005990757430308746
+  }
+ ]
+}

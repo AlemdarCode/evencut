@@ -1,0 +1,289 @@
+{
+ "format": "evencut-probe/1",
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "machine": {
+  "gpus": 1,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GeForce RTX 4060",
+  "memory_gb": 8.0,
+  "gpus_present": 1,
+  "cuda": "13.0",
+  "nccl": null,
+  "driver": "616.92",
+  "power_limit_w": 115.0,
+  "pcie_gen": 3.0,
+  "pcie_width": 8.0,
+  "topology": "\tGPU0\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\nGPU0\t X \t\t\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+  "links": null,
+  "worst_link": null,
+  "p2p": null,
+  "free_memory_gb": 6.9,
+  "shapes": [
+   [
+    1,
+    32,
+    33.93
+   ],
+   [
+    1,
+    64,
+    34.031
+   ],
+   [
+    1,
+    128,
+    34.091
+   ],
+   [
+    1,
+    256,
+    35.827
+   ],
+   [
+    1,
+    512,
+    33.604
+   ],
+   [
+    32,
+    32,
+    37.935
+   ],
+   [
+    16,
+    64,
+    38.102
+   ],
+   [
+    8,
+    128,
+    38.805
+   ],
+   [
+    4,
+    256,
+    38.631
+   ],
+   [
+    2,
+    512,
+    39.389
+   ],
+   [
+    1,
+    1024,
+    41.639
+   ],
+   [
+    1,
+    2048,
+    82.78
+   ],
+   [
+    128,
+    32,
+    128.468
+   ],
+   [
+    64,
+    64,
+    127.984
+   ],
+   [
+    32,
+    128,
+    128.799
+   ],
+   [
+    16,
+    256,
+    131.214
+   ],
+   [
+    8,
+    512,
+    135.373
+   ],
+   [
+    4,
+    1024,
+    144.027
+   ],
+   [
+    2,
+    2048,
+    163.255
+   ],
+   [
+    256,
+    32,
+    268.258
+   ],
+   [
+    128,
+    64,
+    267.502
+   ],
+   [
+    64,
+    128,
+    268.791
+   ],
+   [
+    32,
+    256,
+    273.092
+   ],
+   [
+    16,
+    512,
+    282.054
+   ],
+   [
+    8,
+    1024,
+    299.22
+   ],
+   [
+    4,
+    2048,
+    334.945
+   ]
+  ]
+ },
+ "model": {
+  "params": 91226112,
+  "layers": 12,
+  "d_model": 768,
+  "heads": 12,
+  "vocab": 8192,
+  "probe_layers": 12,
+  "max_len": 2048,
+  "attention_constant": 9899
+ },
+ "curve": {
+  "a": 9899,
+  "points": [
+   [
+    317792.0,
+    33.92989998974372
+   ],
+   [
+    637632.0,
+    34.03129999060184
+   ],
+   [
+    1283456.0,
+    34.091499997884966
+   ],
+   [
+    2599680.0,
+    34.71564999927068
+   ],
+   [
+    5330432.0,
+    34.71564999927068
+   ],
+   [
+    10169344.0,
+    37.93479999876581
+   ],
+   [
+    10202112.0,
+    38.10200000589248
+   ],
+   [
+    10267648.0,
+    38.71810000418918
+   ],
+   [
+    10398720.0,
+    38.71810000418918
+   ],
+   [
+    10660864.0,
+    39.38870001002215
+   ],
+   [
+    11185152.0,
+    41.63910000352189
+   ],
+   [
+    24467456.0,
+    82.7801000123145
+   ],
+   [
+    40677376.0,
+    128.2258999926853
+   ],
+   [
+    40808448.0,
+    128.2258999926853
+   ],
+   [
+    41070592.0,
+    128.79859999520704
+   ],
+   [
+    41594880.0,
+    131.21419999515638
+   ],
+   [
+    42643456.0,
+    135.37259999429807
+   ],
+   [
+    44740608.0,
+    144.02680000057444
+   ],
+   [
+    48934912.0,
+    163.25489999144338
+   ],
+   [
+    81354752.0,
+    267.87994999904186
+   ],
+   [
+    81616896.0,
+    267.87994999904186
+   ],
+   [
+    82141184.0,
+    268.79090000875294
+   ],
+   [
+    83189760.0,
+    273.09189998777583
+   ],
+   [
+    85286912.0,
+    282.0542999979807
+   ],
+   [
+    89481216.0,
+    299.22000000078697
+   ],
+   [
+    97869824.0,
+    334.944699992775
+   ]
+  ]
+ },
+ "optimizer_ms": 10.685499990358949,
+ "allreduce": null,
+ "watts": null,
+ "tflops": [
+  28.913333696891282
+ ],
+ "gpu_speed": [
+  1.0
+ ],
+ "max_tokens_tested": 16384,
+ "max_tokens_fit": 8192,
+ "price_per_hour": null,
+ "launch_ms": 32.03610000491608,
+ "notes": []
+}

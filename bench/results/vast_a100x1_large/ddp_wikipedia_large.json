@@ -1,0 +1,61 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "Wikipedia-TR",
+ "gpus": 1,
+ "gpu": "NVIDIA A100-SXM4-40GB",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+ "model": "large",
+ "params": 312001536,
+ "allreduce_ms": 0.040000013541430235,
+ "seq_len": 2048,
+ "global_batch": 6,
+ "steps": 24,
+ "accum": 1,
+ "topology": "\t\u001b[4mGPU0\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \t0-11\t0\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+ "sampler_checked": false,
+ "args": {
+  "lengths": "/root/run/data/wikipedia_tr_run.txt",
+  "offset": "0",
+  "name": "Wikipedia-TR",
+  "seq_len": "2048",
+  "vocab": "8192",
+  "model": "large",
+  "global_batch": "6",
+  "steps": "24",
+  "warmup": "3",
+  "accum": "1",
+  "extended": "False",
+  "repeats": "1",
+  "only": "noise floor;random | equal counts;random | Evencut, balanced padded size;whole optimizer step",
+  "seed": "20261101",
+  "out_dir": "/root/out",
+  "out_name": "ddp_wikipedia_large"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 97.86521858768538,
+   "tokens_per_s": 21498.955710346225,
+   "wasted": 0.5189757658893461
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 164.22678595699836,
+   "tokens_per_s": 17985.79922749885,
+   "wasted": 0.6300413326653307
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 165.0861582068804,
+   "tokens_per_s": 17892.17237885238,
+   "wasted": 0.6300413326653307
+  }
+ ]
+}

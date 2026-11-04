@@ -1,0 +1,163 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-01",
+ "dataset": "TinyStories-Turkish",
+ "gpu": "NVIDIA GeForce RTX 4060",
+ "torch": "2.14.1+cu130",
+ "params": 29893120,
+ "stories": 359954,
+ "mean_len": 153.74448123926948,
+ "median_len": 152,
+ "p90_len": 191,
+ "seq_len": 512,
+ "alloc_conf": "expandable_segments:True",
+ "args": {
+  "tokens": "~/.cache/minimasal/data/tok/train.bin",
+  "jsonl": "None",
+  "eot": "0",
+  "fields": "text",
+  "tokenizer": "gpt2",
+  "name": "TinyStories-Turkish",
+  "out_name": "gpu_batches",
+  "skip_a": "False",
+  "save_lengths": "~/.cache/evencut/data/lengths/tinystories_tr.txt",
+  "seq_len": "512",
+  "vocab": "8192",
+  "stories_a": "20480",
+  "fixed": "32",
+  "budget": "16384",
+  "gpus": "8",
+  "global_batch": "256",
+  "steps_b": "40",
+  "reps": "3",
+  "seed": "20261101",
+  "out_dir": "bench/results"
+ },
+ "part_a": [
+  {
+   "method": "random order, fixed size",
+   "steps": 640,
+   "padded_tokens": 4545760,
+   "real_tokens": 3150554,
+   "wasted": 0.30692469466051886,
+   "seconds": 61.51347920000262,
+   "tokens_per_s": 51217.29482665753,
+   "largest_step": 16384
+  },
+  {
+   "method": "sorted, fixed size",
+   "steps": 640,
+   "padded_tokens": 3159936,
+   "real_tokens": 3150554,
+   "wasted": 0.002969047474379205,
+   "seconds": 42.859824899998785,
+   "tokens_per_s": 73508.32644209168,
+   "largest_step": 16384
+  },
+  {
+   "method": "sorted, greedy budget",
+   "steps": 195,
+   "padded_tokens": 3165192,
+   "real_tokens": 3150554,
+   "wasted": 0.004624679956223843,
+   "seconds": 44.084823499993945,
+   "tokens_per_s": 71465.72788253156,
+   "largest_step": 16384
+  },
+  {
+   "method": "sorted, Evencut token budget (ignores padding)",
+   "steps": 346,
+   "padded_tokens": 3161390,
+   "real_tokens": 3150554,
+   "wasted": 0.0034276062111918693,
+   "seconds": 42.84512449999602,
+   "tokens_per_s": 73533.54755685896,
+   "largest_step": 13824
+  },
+  {
+   "method": "sorted, Evencut padded budget",
+   "steps": 195,
+   "padded_tokens": 3165122,
+   "real_tokens": 3150554,
+   "wasted": 0.0046026661847473616,
+   "seconds": 44.67790509999759,
+   "tokens_per_s": 70517.04848175995,
+   "largest_step": 16320
+  }
+ ],
+ "part_b": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 93.46036250008183,
+   "idle": 0.021978562036368277,
+   "tokens_per_s": 405391.1089844834,
+   "wasted": 0.30516431924882625
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 114.46631000017078,
+   "idle": 0.17398890937929146,
+   "tokens_per_s": 343824.9647423882,
+   "wasted": 0.3066275492945836
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 113.78612500102463,
+   "idle": 0.1629301628448584,
+   "tokens_per_s": 345880.26439643325,
+   "wasted": 0.30599542225145526
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 97.1592124997187,
+   "idle": 0.05194606159898607,
+   "tokens_per_s": 405070.95505857404,
+   "wasted": 0.3006338589428399
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 111.13057250004204,
+   "idle": 0.3841899694156816,
+   "tokens_per_s": 354145.3455572283,
+   "wasted": 0.07610673170823312
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 78.80162000055861,
+   "idle": 0.1516610596045379,
+   "tokens_per_s": 499436.1156499195,
+   "wasted": 0.06561146535754747
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 68.85867499986489,
+   "idle": 0.03477004712512377,
+   "tokens_per_s": 571552.8943895191,
+   "wasted": 0.05977579225246965
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 65.01438750019588,
+   "idle": 0.038788683507373745,
+   "tokens_per_s": 605348.7006992325,
+   "wasted": 0.002504739552707913
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 64.83841999979632,
+   "idle": 0.033200001245473065,
+   "tokens_per_s": 606991.5799941398,
+   "wasted": 0.002504739552707913
+  }
+ ],
+ "sorted_rows_identical": true
+}

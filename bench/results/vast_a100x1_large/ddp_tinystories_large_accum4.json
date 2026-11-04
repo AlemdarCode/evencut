@@ -1,0 +1,71 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "TinyStories-Turkish",
+ "gpus": 1,
+ "gpu": "NVIDIA A100-SXM4-40GB",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+ "model": "large",
+ "params": 312001536,
+ "allreduce_ms": 0.04015500599052757,
+ "seq_len": 512,
+ "global_batch": 16,
+ "steps": 24,
+ "accum": 4,
+ "topology": "\t\u001b[4mGPU0\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \t0-11\t0\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+ "sampler_checked": [
+  "pooled",
+  "window"
+ ],
+ "args": {
+  "lengths": "/root/run/data/tinystories_tr.txt",
+  "offset": "20480",
+  "name": "TinyStories-Turkish",
+  "seq_len": "512",
+  "vocab": "8192",
+  "model": "large",
+  "global_batch": "16",
+  "steps": "24",
+  "warmup": "4",
+  "accum": "4",
+  "extended": "True",
+  "repeats": "1",
+  "only": "noise floor;random | equal counts;random | Evencut, balanced padded size;whole optimizer step",
+  "seed": "20261101",
+  "out_dir": "/root/out",
+  "out_name": "ddp_tinystories_large_accum4"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 277.20753349907073,
+   "tokens_per_s": 35352.574572194484,
+   "wasted": 0.2811032863849765
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 288.43851583466557,
+   "tokens_per_s": 34237.22142223865,
+   "wasted": 0.2779781633846754
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 288.4799534998213,
+   "tokens_per_s": 34232.30353973088,
+   "wasted": 0.2779781633846754
+  },
+  {
+   "order": "random",
+   "split": "Evencut, whole optimizer step balanced (window)",
+   "step_ms": 245.63455082534347,
+   "tokens_per_s": 40203.35616529416,
+   "wasted": 0.09395070034864517
+  }
+ ]
+}

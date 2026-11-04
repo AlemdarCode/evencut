@@ -1,0 +1,1383 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-01",
+ "datasets": [
+  {
+   "name": "psmigr_1",
+   "field": "economics (inter-county migration)",
+   "n": 3140,
+   "total": 543162,
+   "largest_item": 2294,
+   "results": [
+    {
+     "k": 2,
+     "mean": 271581.0,
+     "best_possible": 271581,
+     "evencut": 271589,
+     "evencut_ms": 1.5,
+     "methods": {
+      "equal count": 275413,
+      "nearest-target cut": 271589,
+      "greedy fill": 271666,
+      "recursive bisection": 271589
+     }
+    },
+    {
+     "k": 4,
+     "mean": 135790.5,
+     "best_possible": 135791,
+     "evencut": 135946,
+     "evencut_ms": 1.4,
+     "methods": {
+      "equal count": 152991,
+      "nearest-target cut": 135985,
+      "greedy fill": 135985,
+      "recursive bisection": 135985
+     }
+    },
+    {
+     "k": 8,
+     "mean": 67895.25,
+     "best_possible": 67896,
+     "evencut": 68107,
+     "evencut_ms": 1.4,
+     "methods": {
+      "equal count": 88920,
+      "nearest-target cut": 68166,
+      "greedy fill": 68461,
+      "recursive bisection": 68166
+     }
+    },
+    {
+     "k": 16,
+     "mean": 33947.625,
+     "best_possible": 33948,
+     "evencut": 34177,
+     "evencut_ms": 1.4,
+     "methods": {
+      "equal count": 56647,
+      "nearest-target cut": 34370,
+      "greedy fill": 34635,
+      "recursive bisection": 34370
+     }
+    },
+    {
+     "k": 32,
+     "mean": 16973.8125,
+     "best_possible": 16974,
+     "evencut": 17148,
+     "evencut_ms": 1.5,
+     "methods": {
+      "equal count": 31087,
+      "nearest-target cut": 17296,
+      "greedy fill": 17884,
+      "recursive bisection": 17296
+     }
+    },
+    {
+     "k": 64,
+     "mean": 8486.90625,
+     "best_possible": 8487,
+     "evencut": 8693,
+     "evencut_ms": 1.8,
+     "methods": {
+      "equal count": 22261,
+      "nearest-target cut": 8923,
+      "greedy fill": 9728,
+      "recursive bisection": 8872
+     }
+    },
+    {
+     "k": 128,
+     "mean": 4243.453125,
+     "best_possible": 4244,
+     "evencut": 4416,
+     "evencut_ms": 1.5,
+     "methods": {
+      "equal count": 11844,
+      "nearest-target cut": 4737,
+      "greedy fill": 5410,
+      "recursive bisection": 4713
+     }
+    },
+    {
+     "k": 256,
+     "mean": 2121.7265625,
+     "best_possible": 2294,
+     "evencut": 2307,
+     "evencut_ms": 1.6,
+     "methods": {
+      "equal count": 8105,
+      "nearest-target cut": 3066,
+      "greedy fill": 4344,
+      "recursive bisection": 2828
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 530.431640625,
+     "best_possible": 2294,
+     "evencut": 2294,
+     "evencut_ms": 2.2,
+     "methods": {
+      "equal count": 3679,
+      "nearest-target cut": 2294,
+      "greedy fill": 2804,
+      "recursive bisection": 2294
+     }
+    }
+   ]
+  },
+  {
+   "name": "bcsstk17",
+   "field": "structural engineering",
+   "n": 10974,
+   "total": 428650,
+   "largest_item": 150,
+   "results": [
+    {
+     "k": 2,
+     "mean": 214325.0,
+     "best_possible": 214325,
+     "evencut": 214336,
+     "evencut_ms": 4.8,
+     "methods": {
+      "equal count": 233798,
+      "nearest-target cut": 214336,
+      "greedy fill": 214336,
+      "recursive bisection": 214336
+     }
+    },
+    {
+     "k": 4,
+     "mean": 107162.5,
+     "best_possible": 107163,
+     "evencut": 107178,
+     "evencut_ms": 4.8,
+     "methods": {
+      "equal count": 126206,
+      "nearest-target cut": 107178,
+      "greedy fill": 107190,
+      "recursive bisection": 107178
+     }
+    },
+    {
+     "k": 8,
+     "mean": 53581.25,
+     "best_possible": 53582,
+     "evencut": 53604,
+     "evencut_ms": 4.7,
+     "methods": {
+      "equal count": 64076,
+      "nearest-target cut": 53608,
+      "greedy fill": 53625,
+      "recursive bisection": 53608
+     }
+    },
+    {
+     "k": 16,
+     "mean": 26790.625,
+     "best_possible": 26791,
+     "evencut": 26809,
+     "evencut_ms": 4.7,
+     "methods": {
+      "equal count": 32868,
+      "nearest-target cut": 26832,
+      "greedy fill": 26831,
+      "recursive bisection": 26821
+     }
+    },
+    {
+     "k": 32,
+     "mean": 13395.3125,
+     "best_possible": 13396,
+     "evencut": 13417,
+     "evencut_ms": 4.8,
+     "methods": {
+      "equal count": 16596,
+      "nearest-target cut": 13434,
+      "greedy fill": 13443,
+      "recursive bisection": 13425
+     }
+    },
+    {
+     "k": 64,
+     "mean": 6697.65625,
+     "best_possible": 6698,
+     "evencut": 6721,
+     "evencut_ms": 4.7,
+     "methods": {
+      "equal count": 8826,
+      "nearest-target cut": 6750,
+      "greedy fill": 6750,
+      "recursive bisection": 6736
+     }
+    },
+    {
+     "k": 128,
+     "mean": 3348.828125,
+     "best_possible": 3349,
+     "evencut": 3372,
+     "evencut_ms": 4.8,
+     "methods": {
+      "equal count": 4584,
+      "nearest-target cut": 3393,
+      "greedy fill": 3402,
+      "recursive bisection": 3379
+     }
+    },
+    {
+     "k": 256,
+     "mean": 1674.4140625,
+     "best_possible": 1675,
+     "evencut": 1695,
+     "evencut_ms": 4.9,
+     "methods": {
+      "equal count": 2568,
+      "nearest-target cut": 1722,
+      "greedy fill": 1728,
+      "recursive bisection": 1716
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 418.603515625,
+     "best_possible": 419,
+     "evencut": 445,
+     "evencut_ms": 5.6,
+     "methods": {
+      "equal count": 1104,
+      "nearest-target cut": 480,
+      "greedy fill": 510,
+      "recursive bisection": 456
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 104.65087890625,
+     "best_possible": 150,
+     "evencut": 150,
+     "evencut_ms": 7.6,
+     "methods": {
+      "equal count": 450,
+      "nearest-target cut": 157,
+      "greedy fill": 186,
+      "recursive bisection": 150
+     }
+    }
+   ]
+  },
+  {
+   "name": "memplus",
+   "field": "circuit simulation (memory chip)",
+   "n": 17758,
+   "total": 126150,
+   "largest_item": 574,
+   "results": [
+    {
+     "k": 2,
+     "mean": 63075.0,
+     "best_possible": 63075,
+     "evencut": 63077,
+     "evencut_ms": 7.9,
+     "methods": {
+      "equal count": 92595,
+      "nearest-target cut": 63077,
+      "greedy fill": 63081,
+      "recursive bisection": 63077
+     }
+    },
+    {
+     "k": 4,
+     "mean": 31537.5,
+     "best_possible": 31538,
+     "evencut": 31541,
+     "evencut_ms": 7.9,
+     "methods": {
+      "equal count": 74837,
+      "nearest-target cut": 31541,
+      "greedy fill": 31630,
+      "recursive bisection": 31541
+     }
+    },
+    {
+     "k": 8,
+     "mean": 15768.75,
+     "best_possible": 15769,
+     "evencut": 15790,
+     "evencut_ms": 7.8,
+     "methods": {
+      "equal count": 52050,
+      "nearest-target cut": 15824,
+      "greedy fill": 15929,
+      "recursive bisection": 15824
+     }
+    },
+    {
+     "k": 16,
+     "mean": 7884.375,
+     "best_possible": 7885,
+     "evencut": 7921,
+     "evencut_ms": 7.9,
+     "methods": {
+      "equal count": 38161,
+      "nearest-target cut": 7990,
+      "greedy fill": 8131,
+      "recursive bisection": 7990
+     }
+    },
+    {
+     "k": 32,
+     "mean": 3942.1875,
+     "best_possible": 3943,
+     "evencut": 3986,
+     "evencut_ms": 7.9,
+     "methods": {
+      "equal count": 31210,
+      "nearest-target cut": 4038,
+      "greedy fill": 4167,
+      "recursive bisection": 4030
+     }
+    },
+    {
+     "k": 64,
+     "mean": 1971.09375,
+     "best_possible": 1972,
+     "evencut": 2006,
+     "evencut_ms": 7.9,
+     "methods": {
+      "equal count": 27761,
+      "nearest-target cut": 2073,
+      "greedy fill": 2189,
+      "recursive bisection": 2065
+     }
+    },
+    {
+     "k": 128,
+     "mean": 985.546875,
+     "best_possible": 986,
+     "evencut": 1030,
+     "evencut_ms": 7.9,
+     "methods": {
+      "equal count": 16777,
+      "nearest-target cut": 1197,
+      "greedy fill": 1270,
+      "recursive bisection": 1197
+     }
+    },
+    {
+     "k": 256,
+     "mean": 492.7734375,
+     "best_possible": 574,
+     "evencut": 574,
+     "evencut_ms": 8.8,
+     "methods": {
+      "equal count": 10320,
+      "nearest-target cut": 732,
+      "greedy fill": 872,
+      "recursive bisection": 733
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 123.193359375,
+     "best_possible": 574,
+     "evencut": 574,
+     "evencut_ms": 9.9,
+     "methods": {
+      "equal count": 4043,
+      "nearest-target cut": 574,
+      "greedy fill": 589,
+      "recursive bisection": 574
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 30.79833984375,
+     "best_possible": 574,
+     "evencut": 574,
+     "evencut_ms": 11.5,
+     "methods": {
+      "equal count": 1121,
+      "nearest-target cut": 574,
+      "greedy fill": 589,
+      "recursive bisection": 574
+     }
+    }
+   ]
+  },
+  {
+   "name": "af23560",
+   "field": "fluid dynamics (airfoil)",
+   "n": 23560,
+   "total": 484256,
+   "largest_item": 21,
+   "results": [
+    {
+     "k": 2,
+     "mean": 242128.0,
+     "best_possible": 242128,
+     "evencut": 242128,
+     "evencut_ms": 10.4,
+     "methods": {
+      "equal count": 242128,
+      "nearest-target cut": 242128,
+      "greedy fill": 242128,
+      "recursive bisection": 242128
+     }
+    },
+    {
+     "k": 4,
+     "mean": 121064.0,
+     "best_possible": 121064,
+     "evencut": 121065,
+     "evencut_ms": 10.5,
+     "methods": {
+      "equal count": 121506,
+      "nearest-target cut": 121065,
+      "greedy fill": 121084,
+      "recursive bisection": 121065
+     }
+    },
+    {
+     "k": 8,
+     "mean": 60532.0,
+     "best_possible": 60532,
+     "evencut": 60536,
+     "evencut_ms": 10.1,
+     "methods": {
+      "equal count": 60781,
+      "nearest-target cut": 60536,
+      "greedy fill": 60550,
+      "recursive bisection": 60536
+     }
+    },
+    {
+     "k": 16,
+     "mean": 30266.0,
+     "best_possible": 30266,
+     "evencut": 30270,
+     "evencut_ms": 11.0,
+     "methods": {
+      "equal count": 30429,
+      "nearest-target cut": 30270,
+      "greedy fill": 30284,
+      "recursive bisection": 30270
+     }
+    },
+    {
+     "k": 32,
+     "mean": 15133.0,
+     "best_possible": 15133,
+     "evencut": 15140,
+     "evencut_ms": 10.6,
+     "methods": {
+      "equal count": 15245,
+      "nearest-target cut": 15140,
+      "greedy fill": 15148,
+      "recursive bisection": 15140
+     }
+    },
+    {
+     "k": 64,
+     "mean": 7566.5,
+     "best_possible": 7567,
+     "evencut": 7574,
+     "evencut_ms": 10.3,
+     "methods": {
+      "equal count": 7637,
+      "nearest-target cut": 7581,
+      "greedy fill": 7586,
+      "recursive bisection": 7579
+     }
+    },
+    {
+     "k": 128,
+     "mean": 3783.25,
+     "best_possible": 3784,
+     "evencut": 3787,
+     "evencut_ms": 10.3,
+     "methods": {
+      "equal count": 3829,
+      "nearest-target cut": 3800,
+      "greedy fill": 3804,
+      "recursive bisection": 3791
+     }
+    },
+    {
+     "k": 256,
+     "mean": 1891.625,
+     "best_possible": 1892,
+     "evencut": 1897,
+     "evencut_ms": 10.5,
+     "methods": {
+      "equal count": 1953,
+      "nearest-target cut": 1911,
+      "greedy fill": 1911,
+      "recursive bisection": 1903
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 472.90625,
+     "best_possible": 473,
+     "evencut": 483,
+     "evencut_ms": 11.0,
+     "methods": {
+      "equal count": 504,
+      "nearest-target cut": 491,
+      "greedy fill": 492,
+      "recursive bisection": 483
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 118.2265625,
+     "best_possible": 119,
+     "evencut": 126,
+     "evencut_ms": 12.3,
+     "methods": {
+      "equal count": 126,
+      "nearest-target cut": 134,
+      "greedy fill": 137,
+      "recursive bisection": 132
+     }
+    }
+   ]
+  },
+  {
+   "name": "bcsstk30",
+   "field": "structural engineering",
+   "n": 28924,
+   "total": 2043492,
+   "largest_item": 219,
+   "results": [
+    {
+     "k": 2,
+     "mean": 1021746.0,
+     "best_possible": 1021746,
+     "evencut": 1021747,
+     "evencut_ms": 12.8,
+     "methods": {
+      "equal count": 1087797,
+      "nearest-target cut": 1021747,
+      "greedy fill": 1021747,
+      "recursive bisection": 1021747
+     }
+    },
+    {
+     "k": 4,
+     "mean": 510873.0,
+     "best_possible": 510873,
+     "evencut": 510886,
+     "evencut_ms": 12.7,
+     "methods": {
+      "equal count": 568485,
+      "nearest-target cut": 510886,
+      "greedy fill": 510937,
+      "recursive bisection": 510886
+     }
+    },
+    {
+     "k": 8,
+     "mean": 255436.5,
+     "best_possible": 255437,
+     "evencut": 255468,
+     "evencut_ms": 12.4,
+     "methods": {
+      "equal count": 284891,
+      "nearest-target cut": 255500,
+      "greedy fill": 255552,
+      "recursive bisection": 255500
+     }
+    },
+    {
+     "k": 16,
+     "mean": 127718.25,
+     "best_possible": 127719,
+     "evencut": 127756,
+     "evencut_ms": 12.5,
+     "methods": {
+      "equal count": 148444,
+      "nearest-target cut": 127765,
+      "greedy fill": 127877,
+      "recursive bisection": 127762
+     }
+    },
+    {
+     "k": 32,
+     "mean": 63859.125,
+     "best_possible": 63860,
+     "evencut": 63895,
+     "evencut_ms": 12.5,
+     "methods": {
+      "equal count": 74792,
+      "nearest-target cut": 63934,
+      "greedy fill": 63974,
+      "recursive bisection": 63920
+     }
+    },
+    {
+     "k": 64,
+     "mean": 31929.5625,
+     "best_possible": 31930,
+     "evencut": 31971,
+     "evencut_ms": 12.5,
+     "methods": {
+      "equal count": 38017,
+      "nearest-target cut": 32006,
+      "greedy fill": 32092,
+      "recursive bisection": 31994
+     }
+    },
+    {
+     "k": 128,
+     "mean": 15964.78125,
+     "best_possible": 15965,
+     "evencut": 16006,
+     "evencut_ms": 12.8,
+     "methods": {
+      "equal count": 21221,
+      "nearest-target cut": 16069,
+      "greedy fill": 16116,
+      "recursive bisection": 16037
+     }
+    },
+    {
+     "k": 256,
+     "mean": 7982.390625,
+     "best_possible": 7983,
+     "evencut": 8024,
+     "evencut_ms": 12.6,
+     "methods": {
+      "equal count": 11328,
+      "nearest-target cut": 8086,
+      "greedy fill": 8126,
+      "recursive bisection": 8051
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 1995.59765625,
+     "best_possible": 1996,
+     "evencut": 2038,
+     "evencut_ms": 13.7,
+     "methods": {
+      "equal count": 3818,
+      "nearest-target cut": 2120,
+      "greedy fill": 2154,
+      "recursive bisection": 2088
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 498.8994140625,
+     "best_possible": 499,
+     "evencut": 539,
+     "evencut_ms": 14.9,
+     "methods": {
+      "equal count": 1563,
+      "nearest-target cut": 639,
+      "greedy fill": 686,
+      "recursive bisection": 609
+     }
+    }
+   ]
+  },
+  {
+   "name": "amazon0601",
+   "field": "co-purchase network",
+   "n": 403394,
+   "total": 3387388,
+   "largest_item": 10,
+   "results": [
+    {
+     "k": 2,
+     "mean": 1693694.0,
+     "best_possible": 1693694,
+     "evencut": 1693698,
+     "evencut_ms": 176.9,
+     "methods": {
+      "equal count": 1838059,
+      "nearest-target cut": 1693698,
+      "greedy fill": 1693700,
+      "recursive bisection": 1693698
+     }
+    },
+    {
+     "k": 4,
+     "mean": 846847.0,
+     "best_possible": 846847,
+     "evencut": 846853,
+     "evencut_ms": 176.2,
+     "methods": {
+      "equal count": 947722,
+      "nearest-target cut": 846853,
+      "greedy fill": 846853,
+      "recursive bisection": 846853
+     }
+    },
+    {
+     "k": 8,
+     "mean": 423423.5,
+     "best_possible": 423424,
+     "evencut": 423427,
+     "evencut_ms": 177.5,
+     "methods": {
+      "equal count": 481605,
+      "nearest-target cut": 423427,
+      "greedy fill": 423432,
+      "recursive bisection": 423427
+     }
+    },
+    {
+     "k": 16,
+     "mean": 211711.75,
+     "best_possible": 211712,
+     "evencut": 211717,
+     "evencut_ms": 189.0,
+     "methods": {
+      "equal count": 243503,
+      "nearest-target cut": 211718,
+      "greedy fill": 211720,
+      "recursive bisection": 211718
+     }
+    },
+    {
+     "k": 32,
+     "mean": 105855.875,
+     "best_possible": 105856,
+     "evencut": 105860,
+     "evencut_ms": 185.0,
+     "methods": {
+      "equal count": 122552,
+      "nearest-target cut": 105861,
+      "greedy fill": 105863,
+      "recursive bisection": 105861
+     }
+    },
+    {
+     "k": 64,
+     "mean": 52927.9375,
+     "best_possible": 52928,
+     "evencut": 52933,
+     "evencut_ms": 179.9,
+     "methods": {
+      "equal count": 61764,
+      "nearest-target cut": 52935,
+      "greedy fill": 52937,
+      "recursive bisection": 52934
+     }
+    },
+    {
+     "k": 128,
+     "mean": 26463.96875,
+     "best_possible": 26464,
+     "evencut": 26469,
+     "evencut_ms": 195.5,
+     "methods": {
+      "equal count": 31007,
+      "nearest-target cut": 26472,
+      "greedy fill": 26473,
+      "recursive bisection": 26472
+     }
+    },
+    {
+     "k": 256,
+     "mean": 13231.984375,
+     "best_possible": 13232,
+     "evencut": 13237,
+     "evencut_ms": 184.5,
+     "methods": {
+      "equal count": 15595,
+      "nearest-target cut": 13241,
+      "greedy fill": 13241,
+      "recursive bisection": 13240
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 3307.99609375,
+     "best_possible": 3308,
+     "evencut": 3313,
+     "evencut_ms": 191.8,
+     "methods": {
+      "equal count": 3916,
+      "nearest-target cut": 3317,
+      "greedy fill": 3317,
+      "recursive bisection": 3316
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 826.9990234375,
+     "best_possible": 827,
+     "evencut": 832,
+     "evencut_ms": 192.1,
+     "methods": {
+      "equal count": 990,
+      "nearest-target cut": 836,
+      "greedy fill": 836,
+      "recursive bisection": 835
+     }
+    }
+   ]
+  },
+  {
+   "name": "web-Google",
+   "field": "web graph",
+   "n": 875713,
+   "total": 5105039,
+   "largest_item": 456,
+   "results": [
+    {
+     "k": 2,
+     "mean": 2552519.5,
+     "best_possible": 2552520,
+     "evencut": 2552521,
+     "evencut_ms": 404.0,
+     "methods": {
+      "equal count": 2573397,
+      "nearest-target cut": 2552521,
+      "greedy fill": 2552521,
+      "recursive bisection": 2552521
+     }
+    },
+    {
+     "k": 4,
+     "mean": 1276259.75,
+     "best_possible": 1276260,
+     "evencut": 1276262,
+     "evencut_ms": 404.4,
+     "methods": {
+      "equal count": 1288520,
+      "nearest-target cut": 1276265,
+      "greedy fill": 1276267,
+      "recursive bisection": 1276265
+     }
+    },
+    {
+     "k": 8,
+     "mean": 638129.875,
+     "best_possible": 638130,
+     "evencut": 638133,
+     "evencut_ms": 453.3,
+     "methods": {
+      "equal count": 645051,
+      "nearest-target cut": 638135,
+      "greedy fill": 638147,
+      "recursive bisection": 638135
+     }
+    },
+    {
+     "k": 16,
+     "mean": 319064.9375,
+     "best_possible": 319065,
+     "evencut": 319071,
+     "evencut_ms": 408.5,
+     "methods": {
+      "equal count": 324125,
+      "nearest-target cut": 319076,
+      "greedy fill": 319085,
+      "recursive bisection": 319076
+     }
+    },
+    {
+     "k": 32,
+     "mean": 159532.46875,
+     "best_possible": 159533,
+     "evencut": 159540,
+     "evencut_ms": 409.2,
+     "methods": {
+      "equal count": 163399,
+      "nearest-target cut": 159550,
+      "greedy fill": 159594,
+      "recursive bisection": 159550
+     }
+    },
+    {
+     "k": 64,
+     "mean": 79766.234375,
+     "best_possible": 79767,
+     "evencut": 79773,
+     "evencut_ms": 416.7,
+     "methods": {
+      "equal count": 82269,
+      "nearest-target cut": 79786,
+      "greedy fill": 79806,
+      "recursive bisection": 79778
+     }
+    },
+    {
+     "k": 128,
+     "mean": 39883.1171875,
+     "best_possible": 39884,
+     "evencut": 39891,
+     "evencut_ms": 405.9,
+     "methods": {
+      "equal count": 41776,
+      "nearest-target cut": 39944,
+      "greedy fill": 40084,
+      "recursive bisection": 39952
+     }
+    },
+    {
+     "k": 256,
+     "mean": 19941.55859375,
+     "best_possible": 19942,
+     "evencut": 19950,
+     "evencut_ms": 419.8,
+     "methods": {
+      "equal count": 21098,
+      "nearest-target cut": 20005,
+      "greedy fill": 20023,
+      "recursive bisection": 19978
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 4985.3896484375,
+     "best_possible": 4986,
+     "evencut": 4992,
+     "evencut_ms": 413.5,
+     "methods": {
+      "equal count": 5595,
+      "nearest-target cut": 5051,
+      "greedy fill": 5147,
+      "recursive bisection": 5042
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 1246.347412109375,
+     "best_possible": 1247,
+     "evencut": 1253,
+     "evencut_ms": 423.4,
+     "methods": {
+      "equal count": 1679,
+      "nearest-target cut": 1417,
+      "greedy fill": 1451,
+      "recursive bisection": 1417
+     }
+    }
+   ]
+  },
+  {
+   "name": "roadNet-CA",
+   "field": "road network",
+   "n": 1965206,
+   "total": 5533214,
+   "largest_item": 12,
+   "results": [
+    {
+     "k": 2,
+     "mean": 2766607.0,
+     "best_possible": 2766607,
+     "evencut": 2766607,
+     "evencut_ms": 902.7,
+     "methods": {
+      "equal count": 2790210,
+      "nearest-target cut": 2766607,
+      "greedy fill": 2766607,
+      "recursive bisection": 2766607
+     }
+    },
+    {
+     "k": 4,
+     "mean": 1383303.5,
+     "best_possible": 1383304,
+     "evencut": 1383304,
+     "evencut_ms": 912.7,
+     "methods": {
+      "equal count": 1397193,
+      "nearest-target cut": 1383304,
+      "greedy fill": 1383306,
+      "recursive bisection": 1383304
+     }
+    },
+    {
+     "k": 8,
+     "mean": 691651.75,
+     "best_possible": 691652,
+     "evencut": 691653,
+     "evencut_ms": 907.8,
+     "methods": {
+      "equal count": 723492,
+      "nearest-target cut": 691653,
+      "greedy fill": 691654,
+      "recursive bisection": 691653
+     }
+    },
+    {
+     "k": 16,
+     "mean": 345825.875,
+     "best_possible": 345826,
+     "evencut": 345828,
+     "evencut_ms": 887.6,
+     "methods": {
+      "equal count": 381414,
+      "nearest-target cut": 345828,
+      "greedy fill": 345829,
+      "recursive bisection": 345828
+     }
+    },
+    {
+     "k": 32,
+     "mean": 172912.9375,
+     "best_possible": 172913,
+     "evencut": 172914,
+     "evencut_ms": 932.4,
+     "methods": {
+      "equal count": 191117,
+      "nearest-target cut": 172915,
+      "greedy fill": 172916,
+      "recursive bisection": 172915
+     }
+    },
+    {
+     "k": 64,
+     "mean": 86456.46875,
+     "best_possible": 86457,
+     "evencut": 86458,
+     "evencut_ms": 930.2,
+     "methods": {
+      "equal count": 97657,
+      "nearest-target cut": 86460,
+      "greedy fill": 86460,
+      "recursive bisection": 86458
+     }
+    },
+    {
+     "k": 128,
+     "mean": 43228.234375,
+     "best_possible": 43229,
+     "evencut": 43230,
+     "evencut_ms": 903.9,
+     "methods": {
+      "equal count": 52082,
+      "nearest-target cut": 43231,
+      "greedy fill": 43232,
+      "recursive bisection": 43230
+     }
+    },
+    {
+     "k": 256,
+     "mean": 21614.1171875,
+     "best_possible": 21615,
+     "evencut": 21616,
+     "evencut_ms": 937.0,
+     "methods": {
+      "equal count": 26163,
+      "nearest-target cut": 21618,
+      "greedy fill": 21618,
+      "recursive bisection": 21617
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 5403.529296875,
+     "best_possible": 5404,
+     "evencut": 5405,
+     "evencut_ms": 978.1,
+     "methods": {
+      "equal count": 6671,
+      "nearest-target cut": 5407,
+      "greedy fill": 5409,
+      "recursive bisection": 5406
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 1350.88232421875,
+     "best_possible": 1351,
+     "evencut": 1352,
+     "evencut_ms": 940.1,
+     "methods": {
+      "equal count": 1786,
+      "nearest-target cut": 1354,
+      "greedy fill": 1356,
+      "recursive bisection": 1354
+     }
+    }
+   ]
+  },
+  {
+   "name": "wiki-Talk",
+   "field": "communication network",
+   "n": 2394385,
+   "total": 5021410,
+   "largest_item": 100022,
+   "results": [
+    {
+     "k": 2,
+     "mean": 2510705.0,
+     "best_possible": 2510705,
+     "evencut": 2510732,
+     "evencut_ms": 1092.8,
+     "methods": {
+      "equal count": 4996723,
+      "nearest-target cut": 2510732,
+      "greedy fill": 2510732,
+      "recursive bisection": 2510732
+     }
+    },
+    {
+     "k": 4,
+     "mean": 1255352.5,
+     "best_possible": 1255353,
+     "evencut": 1256188,
+     "evencut_ms": 1097.4,
+     "methods": {
+      "equal count": 4955610,
+      "nearest-target cut": 1256445,
+      "greedy fill": 1256871,
+      "recursive bisection": 1256445
+     }
+    },
+    {
+     "k": 8,
+     "mean": 627676.25,
+     "best_possible": 627677,
+     "evencut": 628111,
+     "evencut_ms": 1153.7,
+     "methods": {
+      "equal count": 4908896,
+      "nearest-target cut": 628273,
+      "greedy fill": 629190,
+      "recursive bisection": 628238
+     }
+    },
+    {
+     "k": 16,
+     "mean": 313838.125,
+     "best_possible": 313839,
+     "evencut": 317970,
+     "evencut_ms": 1167.4,
+     "methods": {
+      "equal count": 4841535,
+      "nearest-target cut": 356436,
+      "greedy fill": 365245,
+      "recursive bisection": 356646
+     }
+    },
+    {
+     "k": 32,
+     "mean": 156919.0625,
+     "best_possible": 156920,
+     "evencut": 159512,
+     "evencut_ms": 1107.9,
+     "methods": {
+      "equal count": 4706235,
+      "nearest-target cut": 198731,
+      "greedy fill": 196288,
+      "recursive bisection": 178336
+     }
+    },
+    {
+     "k": 64,
+     "mean": 78459.53125,
+     "best_possible": 100022,
+     "evencut": 100022,
+     "evencut_ms": 1113.8,
+     "methods": {
+      "equal count": 4437698,
+      "nearest-target cut": 121132,
+      "greedy fill": 168046,
+      "recursive bisection": 100022
+     }
+    },
+    {
+     "k": 128,
+     "mean": 39229.765625,
+     "best_possible": 100022,
+     "evencut": 100022,
+     "evencut_ms": 1118.0,
+     "methods": {
+      "equal count": 3881691,
+      "nearest-target cut": 100022,
+      "greedy fill": 123584,
+      "recursive bisection": 100022
+     }
+    },
+    {
+     "k": 256,
+     "mean": 19614.8828125,
+     "best_possible": 100022,
+     "evencut": 100022,
+     "evencut_ms": 1212.0,
+     "methods": {
+      "equal count": 3027628,
+      "nearest-target cut": 100022,
+      "greedy fill": 112732,
+      "recursive bisection": 100022
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 4903.720703125,
+     "best_possible": 100022,
+     "evencut": 100022,
+     "evencut_ms": 1174.5,
+     "methods": {
+      "equal count": 1221065,
+      "nearest-target cut": 100022,
+      "greedy fill": 100715,
+      "recursive bisection": 100022
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 1225.93017578125,
+     "best_possible": 100022,
+     "evencut": 100022,
+     "evencut_ms": 1121.5,
+     "methods": {
+      "equal count": 327870,
+      "nearest-target cut": 100022,
+      "greedy fill": 100887,
+      "recursive bisection": 100022
+     }
+    }
+   ]
+  },
+  {
+   "name": "cit-Patents",
+   "field": "citation network",
+   "n": 3774768,
+   "total": 16518948,
+   "largest_item": 770,
+   "results": [
+    {
+     "k": 2,
+     "mean": 8259474.0,
+     "best_possible": 8259474,
+     "evencut": 8259475,
+     "evencut_ms": 1815.8,
+     "methods": {
+      "equal count": 15371814,
+      "nearest-target cut": 8259475,
+      "greedy fill": 8259475,
+      "recursive bisection": 8259475
+     }
+    },
+    {
+     "k": 4,
+     "mean": 4129737.0,
+     "best_possible": 4129737,
+     "evencut": 4129740,
+     "evencut_ms": 1785.5,
+     "methods": {
+      "equal count": 9139590,
+      "nearest-target cut": 4129740,
+      "greedy fill": 4129743,
+      "recursive bisection": 4129740
+     }
+    },
+    {
+     "k": 8,
+     "mean": 2064868.5,
+     "best_possible": 2064869,
+     "evencut": 2064872,
+     "evencut_ms": 1743.6,
+     "methods": {
+      "equal count": 5038482,
+      "nearest-target cut": 2064872,
+      "greedy fill": 2064874,
+      "recursive bisection": 2064872
+     }
+    },
+    {
+     "k": 16,
+     "mean": 1032434.25,
+     "best_possible": 1032435,
+     "evencut": 1032440,
+     "evencut_ms": 1810.8,
+     "methods": {
+      "equal count": 2590164,
+      "nearest-target cut": 1032442,
+      "greedy fill": 1032456,
+      "recursive bisection": 1032441
+     }
+    },
+    {
+     "k": 32,
+     "mean": 516217.125,
+     "best_possible": 516218,
+     "evencut": 516222,
+     "evencut_ms": 1756.1,
+     "methods": {
+      "equal count": 1301847,
+      "nearest-target cut": 516227,
+      "greedy fill": 516307,
+      "recursive bisection": 516227
+     }
+    },
+    {
+     "k": 64,
+     "mean": 258108.5625,
+     "best_possible": 258109,
+     "evencut": 258119,
+     "evencut_ms": 1756.6,
+     "methods": {
+      "equal count": 663231,
+      "nearest-target cut": 258136,
+      "greedy fill": 258179,
+      "recursive bisection": 258136
+     }
+    },
+    {
+     "k": 128,
+     "mean": 129054.28125,
+     "best_possible": 129055,
+     "evencut": 129062,
+     "evencut_ms": 1761.5,
+     "methods": {
+      "equal count": 335791,
+      "nearest-target cut": 129083,
+      "greedy fill": 129096,
+      "recursive bisection": 129081
+     }
+    },
+    {
+     "k": 256,
+     "mean": 64527.140625,
+     "best_possible": 64528,
+     "evencut": 64535,
+     "evencut_ms": 1779.0,
+     "methods": {
+      "equal count": 169475,
+      "nearest-target cut": 64567,
+      "greedy fill": 64737,
+      "recursive bisection": 64561
+     }
+    },
+    {
+     "k": 1024,
+     "mean": 16131.78515625,
+     "best_possible": 16132,
+     "evencut": 16140,
+     "evencut_ms": 1754.7,
+     "methods": {
+      "equal count": 43852,
+      "nearest-target cut": 16310,
+      "greedy fill": 16298,
+      "recursive bisection": 16310
+     }
+    },
+    {
+     "k": 4096,
+     "mean": 4032.9462890625,
+     "best_possible": 4033,
+     "evencut": 4042,
+     "evencut_ms": 1807.3,
+     "methods": {
+      "equal count": 13142,
+      "nearest-target cut": 4324,
+      "greedy fill": 4446,
+      "recursive bisection": 4308
+     }
+    }
+   ]
+  }
+ ]
+}

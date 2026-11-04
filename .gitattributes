@@ -1,0 +1,6 @@
+# Every text file gets LF line endings in every checkout, Windows included,
+# so all CI runners test the same bytes that were tested locally.
+* text=auto eol=lf
+
+# Test inputs are compared byte for byte; never convert them.
+tests/data/** -text

@@ -1,0 +1,1057 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Evencut",
+    "description": "Exact, balanced partitioning of ordered workloads: split costs into k contiguous parts (or a tree into k connected parts) so the parts are as even as possible.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000",
+      "description": "Local"
+    }
+  ],
+  "paths": {
+    "/healthz": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Health",
+        "description": "Liveness probe; also reports which backend (native or pure) is active.",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/partition": {
+      "post": {
+        "tags": [
+          "core"
+        ],
+        "summary": "Partition",
+        "description": "Split weights into k contiguous parts (exact optimum, with the cut positions).",
+        "operationId": "partition",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PartitionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartitionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or infeasible limits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "411": {
+            "description": "Content-Length header missing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body larger than EVENCUT_MAX_BODY_BYTES",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request does not match the schema"
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/evaluate": {
+      "post": {
+        "tags": [
+          "core"
+        ],
+        "summary": "Evaluate",
+        "description": "Measure an existing split, e.g. a framework default, to compare with the optimum.",
+        "operationId": "evaluate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartitionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or infeasible limits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "411": {
+            "description": "Content-Length header missing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body larger than EVENCUT_MAX_BODY_BYTES",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request does not match the schema"
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tree-partition": {
+      "post": {
+        "tags": [
+          "core"
+        ],
+        "summary": "Tree Partition",
+        "description": "Split a tree into k connected parts, minimising the largest part.",
+        "operationId": "partitionTree",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TreeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TreeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or infeasible limits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "411": {
+            "description": "Content-Length header missing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body larger than EVENCUT_MAX_BODY_BYTES",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request does not match the schema"
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ai/pipeline-stages": {
+      "post": {
+        "tags": [
+          "ai"
+        ],
+        "summary": "Pipeline Stages",
+        "description": "Assign transformer layers to pipeline stages so the slowest stage is as fast as possible.",
+        "operationId": "pipelineStages",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PipelineRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipelineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or infeasible limits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "411": {
+            "description": "Content-Length header missing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body larger than EVENCUT_MAX_BODY_BYTES",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request does not match the schema"
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ai/token-budget-batches": {
+      "post": {
+        "tags": [
+          "ai"
+        ],
+        "summary": "Token Budget Batches",
+        "description": "Fewest consecutive batches within max_tokens, evened out.",
+        "operationId": "tokenBudgetBatches",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PartitionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or infeasible limits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "411": {
+            "description": "Content-Length header missing",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request body larger than EVENCUT_MAX_BODY_BYTES",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Request does not match the schema"
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BatchesRequest": {
+        "properties": {
+          "sample_tokens": {
+            "items": {
+              "type": "integer",
+              "maximum": 1.8446744073709552e+19,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "minItems": 1,
+            "title": "Sample Tokens"
+          },
+          "max_tokens": {
+            "type": "integer",
+            "maximum": 1.8446744073709552e+19,
+            "minimum": 1.0,
+            "title": "Max Tokens"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sample_tokens",
+          "max_tokens"
+        ],
+        "title": "BatchesRequest",
+        "examples": [
+          {
+            "max_tokens": 2048,
+            "sample_tokens": [
+              512,
+              900,
+              300,
+              1200,
+              700,
+              450
+            ]
+          }
+        ]
+      },
+      "ErrorResponse": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail",
+            "examples": [
+              "evencut: k must be at least 1"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ErrorResponse"
+      },
+      "EvaluateRequest": {
+        "properties": {
+          "weights": {
+            "items": {
+              "type": "integer",
+              "maximum": 1.8446744073709552e+19,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "minItems": 1,
+            "title": "Weights",
+            "description": "Non-negative integers (up to 2^64-1; the total must also fit). JavaScript clients: keep values below 2^53."
+          },
+          "ends": {
+            "items": {
+              "type": "integer",
+              "maximum": 1.8446744073709552e+19,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "minItems": 1,
+            "title": "Ends",
+            "description": "Strictly increasing; last == len(weights)."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "weights",
+          "ends"
+        ],
+        "title": "EvaluateRequest",
+        "examples": [
+          {
+            "ends": [
+              4,
+              7,
+              10
+            ],
+            "weights": [
+              5,
+              3,
+              8,
+              2,
+              7,
+              4,
+              6,
+              1,
+              9,
+              5
+            ]
+          }
+        ]
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "backend": {
+            "type": "string",
+            "title": "Backend"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "backend",
+          "version"
+        ],
+        "title": "HealthResponse"
+      },
+      "PartitionRequest": {
+        "properties": {
+          "weights": {
+            "items": {
+              "type": "integer",
+              "maximum": 1.8446744073709552e+19,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "minItems": 1,
+            "title": "Weights",
+            "description": "Non-negative integers (up to 2^64-1; the total must also fit). JavaScript clients: keep values below 2^53."
+          },
+          "k": {
+            "type": "integer",
+            "maximum": 2000000.0,
+            "minimum": 1.0,
+            "title": "K",
+            "description": "Number of parts."
+          },
+          "objective": {
+            "type": "string",
+            "enum": [
+              "min_max",
+              "sum_squares"
+            ],
+            "title": "Objective",
+            "description": "min_max: smallest largest part. sum_squares: smallest sum of squared loads.",
+            "default": "min_max"
+          },
+          "forbidden_cuts": {
+            "items": {
+              "type": "integer",
+              "maximum": 1.8446744073709552e+19,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "title": "Forbidden Cuts",
+            "description": "Cut positions numbered like `ends`: b keeps items b-1 and b together, so b never appears in `ends`. Valid: 1 .. n-1."
+          },
+          "secondary": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer",
+                  "maximum": 1.8446744073709552e+19,
+                  "minimum": 0.0
+                },
+                "type": "array",
+                "maxItems": 2000000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary",
+            "description": "Second value per item, e.g. memory (min_max only)."
+          },
+          "secondary_limit": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 1.8446744073709552e+19,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Secondary Limit",
+            "description": "Per-part limit for `secondary`."
+          },
+          "polish": {
+            "type": "boolean",
+            "title": "Polish",
+            "description": "min_max: even out the non-maximal parts.",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "weights",
+          "k"
+        ],
+        "title": "PartitionRequest",
+        "examples": [
+          {
+            "k": 3,
+            "objective": "min_max",
+            "weights": [
+              5,
+              3,
+              8,
+              2,
+              7,
+              4,
+              6,
+              1,
+              9,
+              5
+            ]
+          }
+        ]
+      },
+      "PartitionResponse": {
+        "properties": {
+          "objective": {
+            "type": "string",
+            "title": "Objective"
+          },
+          "parts": {
+            "type": "integer",
+            "title": "Parts"
+          },
+          "ends": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Ends",
+            "description": "Exclusive end index of each part."
+          },
+          "loads": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Loads"
+          },
+          "max_load": {
+            "type": "integer",
+            "title": "Max Load"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "sum_of_squares": {
+            "type": "string",
+            "title": "Sum Of Squares",
+            "description": "Exact decimal value (can exceed 2^53)."
+          },
+          "imbalance": {
+            "type": "number",
+            "title": "Imbalance",
+            "description": "max_load / (total / parts); 1.0 is perfectly even."
+          }
+        },
+        "type": "object",
+        "required": [
+          "objective",
+          "parts",
+          "ends",
+          "loads",
+          "max_load",
+          "total",
+          "sum_of_squares",
+          "imbalance"
+        ],
+        "title": "PartitionResponse",
+        "examples": [
+          {
+            "ends": [
+              4,
+              7,
+              10
+            ],
+            "imbalance": 1.08,
+            "loads": [
+              18,
+              17,
+              15
+            ],
+            "max_load": 18,
+            "objective": "min_max",
+            "parts": 3,
+            "sum_of_squares": "838",
+            "total": 50
+          }
+        ]
+      },
+      "PipelineRequest": {
+        "properties": {
+          "layer_costs": {
+            "items": {
+              "type": "number",
+              "minimum": 0.0
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "minItems": 1,
+            "title": "Layer Costs",
+            "description": "Measured time (or FLOPs) of each transformer layer."
+          },
+          "num_stages": {
+            "type": "integer",
+            "maximum": 2000000.0,
+            "minimum": 1.0,
+            "title": "Num Stages"
+          },
+          "embedding_cost": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Embedding Cost",
+            "default": 0.0
+          },
+          "head_cost": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Head Cost",
+            "default": 0.0
+          },
+          "layer_memory": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number",
+                  "minimum": 0.0
+                },
+                "type": "array",
+                "maxItems": 2000000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Layer Memory"
+          },
+          "embedding_memory": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Embedding Memory",
+            "default": 0.0
+          },
+          "head_memory": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Head Memory",
+            "default": 0.0
+          },
+          "memory_limit": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Memory Limit"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "layer_costs",
+          "num_stages"
+        ],
+        "title": "PipelineRequest",
+        "examples": [
+          {
+            "embedding_cost": 2.0,
+            "head_cost": 3.0,
+            "layer_costs": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "num_stages": 3
+          }
+        ]
+      },
+      "PipelineResponse": {
+        "properties": {
+          "stages": {
+            "items": {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Stages",
+            "description": "[first_layer, end_layer) per stage."
+          },
+          "stage_costs": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Stage Costs"
+          },
+          "stage_memory": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stage Memory"
+          },
+          "bottleneck": {
+            "type": "number",
+            "title": "Bottleneck"
+          },
+          "balance": {
+            "type": "number",
+            "title": "Balance",
+            "description": "Mean stage cost / slowest stage cost."
+          },
+          "layers_per_stage": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Layers Per Stage"
+          },
+          "torchtitan_split_points": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Torchtitan Split Points"
+          },
+          "megatron_layout": {
+            "type": "string",
+            "title": "Megatron Layout"
+          },
+          "deepspeed_parts": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Deepspeed Parts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stages",
+          "stage_costs",
+          "stage_memory",
+          "bottleneck",
+          "balance",
+          "layers_per_stage",
+          "torchtitan_split_points",
+          "megatron_layout",
+          "deepspeed_parts"
+        ],
+        "title": "PipelineResponse"
+      },
+      "TreeRequest": {
+        "properties": {
+          "parents": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": -1.0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "minItems": 1,
+            "title": "Parents",
+            "description": "Parent of each node; null or -1 for the root."
+          },
+          "weights": {
+            "items": {
+              "type": "integer",
+              "maximum": 1.8446744073709552e+19,
+              "minimum": 0.0
+            },
+            "type": "array",
+            "maxItems": 2000000,
+            "minItems": 1,
+            "title": "Weights",
+            "description": "Non-negative integers (up to 2^64-1; the total must also fit). JavaScript clients: keep values below 2^53."
+          },
+          "k": {
+            "type": "integer",
+            "maximum": 2000000.0,
+            "minimum": 1.0,
+            "title": "K"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "parents",
+          "weights",
+          "k"
+        ],
+        "title": "TreeRequest",
+        "examples": [
+          {
+            "k": 2,
+            "parents": [
+              null,
+              0,
+              0,
+              1
+            ],
+            "weights": [
+              4,
+              3,
+              5,
+              2
+            ]
+          }
+        ]
+      },
+      "TreeResponse": {
+        "properties": {
+          "parts": {
+            "type": "integer",
+            "title": "Parts"
+          },
+          "part_of": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Part Of"
+          },
+          "loads": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Loads"
+          },
+          "cut_nodes": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Cut Nodes"
+          },
+          "max_load": {
+            "type": "integer",
+            "title": "Max Load"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "sum_of_squares": {
+            "type": "string",
+            "title": "Sum Of Squares"
+          },
+          "imbalance": {
+            "type": "number",
+            "title": "Imbalance"
+          }
+        },
+        "type": "object",
+        "required": [
+          "parts",
+          "part_of",
+          "loads",
+          "cut_nodes",
+          "max_load",
+          "total",
+          "sum_of_squares",
+          "imbalance"
+        ],
+        "title": "TreeResponse"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "core",
+      "description": "Partition, evaluate, trees"
+    },
+    {
+      "name": "ai",
+      "description": "Helpers for AI training workloads"
+    },
+    {
+      "name": "meta",
+      "description": "Health"
+    }
+  ]
+}

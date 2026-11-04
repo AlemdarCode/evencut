@@ -1,0 +1,133 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "Dolly-15k",
+ "gpus": 2,
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-7.0.0-42-generic-x86_64-with-glibc2.39",
+ "model": "small",
+ "params": 29893120,
+ "allreduce_ms": 47.24545900535304,
+ "seq_len": 1024,
+ "global_batch": 32,
+ "steps": 80,
+ "accum": 8,
+ "topology": "\t\u001b[4mGPU0\tGPU1\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tPHB\t0-63\t0\t\tN/A\nGPU1\tPHB\t X \t0-63\t0\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+ "sampler_checked": [
+  "pooled",
+  "window"
+ ],
+ "args": {
+  "lengths": "/root/run/data/dolly15k_gpt2.txt",
+  "offset": "0",
+  "name": "Dolly-15k",
+  "seq_len": "1024",
+  "vocab": "8192",
+  "model": "small",
+  "global_batch": "32",
+  "steps": "80",
+  "warmup": "5",
+  "accum": "8",
+  "extended": "True",
+  "repeats": "2",
+  "seed": "20261101",
+  "out_dir": "/root/out",
+  "out_name": "ddp_dolly_accum8"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 210.79597030038713,
+   "tokens_per_s": 197802.64271932063,
+   "wasted": 0.6348094170403588
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 288.60497115092585,
+   "tokens_per_s": 143634.04703213484,
+   "wasted": 0.7310673098881023
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 287.5941892503761,
+   "tokens_per_s": 144138.86493343257,
+   "wasted": 0.7328617403957566
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 269.75998494745,
+   "tokens_per_s": 153668.08390086194,
+   "wasted": 0.7213322487832423
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 336.97438960080035,
+   "tokens_per_s": 123016.76708757675,
+   "wasted": 0.6192902957988626
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 204.0361932522501,
+   "tokens_per_s": 203167.3858409572,
+   "wasted": 0.5321417970332732
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 177.0626147510484,
+   "tokens_per_s": 234117.7444955503,
+   "wasted": 0.5050671117701699
+  },
+  {
+   "order": "any order",
+   "split": "LPT on padded size (not contiguous)",
+   "step_ms": 283.313630054181,
+   "tokens_per_s": 146316.64559192728,
+   "wasted": 0.7409140057125356
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 163.12843099876773,
+   "tokens_per_s": 254115.72799540468,
+   "wasted": 0.012661634722794468
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 155.25453025329625,
+   "tokens_per_s": 267003.48087987525,
+   "wasted": 0.012661634722794468
+  },
+  {
+   "order": "random",
+   "split": "Evencut, whole optimizer step balanced (window)",
+   "step_ms": 168.97558015189134,
+   "tokens_per_s": 245322.43039341926,
+   "wasted": 0.0981880440055779
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Hugging Face group_by_length",
+   "step_ms": 176.0928701958619,
+   "tokens_per_s": 235407.032402236,
+   "wasted": 0.017354263066069908
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Evencut, length-grouped steps + balanced",
+   "step_ms": 170.40897515107645,
+   "tokens_per_s": 243258.9009073572,
+   "wasted": 0.01831998882234398
+  }
+ ]
+}

@@ -1,0 +1,61 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "Wikipedia-TR",
+ "gpus": 2,
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-5.15.0-94-generic-x86_64-with-glibc2.39",
+ "model": "large",
+ "params": 312001536,
+ "allreduce_ms": 200.7538564503193,
+ "seq_len": 2048,
+ "global_batch": 12,
+ "steps": 24,
+ "accum": 1,
+ "topology": "\t\u001b[4mGPU0\tGPU1\tNIC0\tNIC1\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tPXB\tNODE\tNODE\t0-31,64-95\t0\t\tN/A\nGPU1\tPXB\t X \tNODE\tNODE\t0-31,64-95\t0\t\tN/A\nNIC0\tNODE\tNODE\t X \tPIX\t\t\t\t\nNIC1\tNODE\tNODE\tPIX\t X \t\t\t\t\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n\nNIC Legend:\n\n  NIC0: mlx5_0\n  NIC1: mlx5_1\n\n",
+ "sampler_checked": false,
+ "args": {
+  "lengths": "/root/run/data/wikipedia_tr_run.txt",
+  "offset": "0",
+  "name": "Wikipedia-TR",
+  "seq_len": "2048",
+  "vocab": "8192",
+  "model": "large",
+  "global_batch": "12",
+  "steps": "24",
+  "warmup": "3",
+  "accum": "1",
+  "extended": "False",
+  "repeats": "1",
+  "only": "noise floor;random | equal counts;random | Evencut, balanced padded size;whole optimizer step",
+  "seed": "20261101",
+  "out_dir": "/root/out",
+  "out_name": "ddp_wikipedia_large"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 241.7773490694041,
+   "tokens_per_s": 17404.442625401025,
+   "wasted": 0.5189757658893461
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 345.57272990544635,
+   "tokens_per_s": 19395.820580231004,
+   "wasted": 0.6324788668037469
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 302.92843460726243,
+   "tokens_per_s": 22126.238084438894,
+   "wasted": 0.6186267490433901
+  }
+ ]
+}

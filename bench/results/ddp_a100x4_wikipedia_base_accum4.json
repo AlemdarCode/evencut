@@ -1,0 +1,107 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-01",
+ "dataset": "Wikipedia-TR",
+ "gpus": 4,
+ "gpu": "NVIDIA A100-SXM4-80GB",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-5.15.0-1090-nvidia-x86_64-with-glibc2.39",
+ "model": "base",
+ "params": 91245312,
+ "allreduce_ms": 2.780793234705925,
+ "seq_len": 2048,
+ "global_batch": 24,
+ "steps": 40,
+ "accum": 4,
+ "topology": "\t\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tNIC0\tNIC1\tNIC2\tNIC3\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNV12\tNV12\tNV12\tSYS\tSYS\tSYS\tSYS\t112-127,240-255\t7\t\tN/A\nGPU1\tNV12\t X \tNV12\tNV12\tSYS\tSYS\tSYS\tSYS\t112-127,240-255\t7\t\tN/A\nGPU2\tNV12\tNV12\t X \tNV12\tSYS\tSYS\tSYS\tSYS\t80-95,208-223\t5\t\tN/A\nGPU3\tNV12\tNV12\tNV12\t X \tSYS\tSYS\tSYS\tSYS\t80-95,208-223\t5\t\tN/A\nNIC0\tSYS\tSYS\tSYS\tSYS\t X \tPIX\tSYS\tSYS\t\t\t\t\nNIC1\tSYS\tSYS\tSYS\tSYS\tPIX\t X \tSYS\tSYS\t\t\t\t\nNIC2\tSYS\tSYS\tSYS\tSYS\tSYS\tSYS\t X \tPIX\t\t\t\t\nNIC3\tSYS\tSYS\tSYS\tSYS\tSYS\tSYS\tPIX\t X \t\t\t\t\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n\nNIC Legend:\n\n  NIC0: mlx5_4\n  NIC1: mlx5_5\n  NIC2: mlx5_10\n  NIC3: mlx5_11\n\n",
+ "args": {
+  "lengths": "/root/run/data/wikipedia_tr_run.txt",
+  "offset": "0",
+  "name": "Wikipedia-TR",
+  "seq_len": "2048",
+  "vocab": "8192",
+  "model": "base",
+  "global_batch": "24",
+  "steps": "40",
+  "warmup": "5",
+  "accum": "4",
+  "repeats": "2",
+  "seed": "20261101",
+  "out_dir": "/root/run/evencut/bench/results",
+  "out_name": "ddp_a100x4_wikipedia_base_accum4"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 122.78643734753132,
+   "tokens_per_s": 274167.08821608976,
+   "wasted": 0.5189757658893461
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 288.7600474059582,
+   "tokens_per_s": 182673.1241868871,
+   "wasted": 0.6292420325487831
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 288.18056117743254,
+   "tokens_per_s": 183040.45139089957,
+   "wasted": 0.631499564774542
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 248.12423009425402,
+   "tokens_per_s": 212589.87878758373,
+   "wasted": 0.5980922818101608
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 313.20597492158413,
+   "tokens_per_s": 168415.3695126871,
+   "wasted": 0.29485061159013437
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 225.85930675268173,
+   "tokens_per_s": 233546.71878879168,
+   "wasted": 0.3470095394663544
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 140.53222872316837,
+   "tokens_per_s": 375349.48729738436,
+   "wasted": 0.2497386465947251
+  },
+  {
+   "order": "any order",
+   "split": "LPT on padded size (not contiguous)",
+   "step_ms": 255.84475211799145,
+   "tokens_per_s": 206174.64131401514,
+   "wasted": 0.6465369821890454
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 115.75275845825672,
+   "tokens_per_s": 455701.4511150719,
+   "wasted": 0.011793203967162658
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 115.81957321614027,
+   "tokens_per_s": 455438.5630618875,
+   "wasted": 0.011793203967162658
+  }
+ ]
+}

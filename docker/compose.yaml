@@ -1,0 +1,17 @@
+# docker compose -f docker/compose.yaml up --build
+services:
+  evencut:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: evencut:1.0.0
+    ports:
+      - "127.0.0.1:8000:8000"   # localhost only; the service has no authentication
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped

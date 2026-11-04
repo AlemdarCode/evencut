@@ -1,0 +1,356 @@
+{
+ "step_time": [
+  {
+   "title": "RTX 4060, 8 GPUs simulated\nWikipedia-TR, 48 sequences per step",
+   "source": "bench/results/gpu_batches_wikipedia_v2.json",
+   "values": [
+    203.21789250083384,
+    89.45126249855093,
+    76.41660249937559,
+    65.73027500089665
+   ]
+  },
+  {
+   "title": "RTX 4060, 8 GPUs simulated\nDolly-15k, 128 sequences x accumulation 8",
+   "source": "bench/results/gpu_batches_dolly_accum8.json",
+   "values": [
+    1364.9639900046168,
+    395.88122999703046,
+    339.665470001637,
+    337.15317999594845
+   ]
+  },
+  {
+   "title": "2x A100 SXM4, rented (vast.ai)\nDolly-15k, 32 sequences x accumulation 8",
+   "source": "bench/results/vast_a100x2_v3/ddp_dolly_accum8.json",
+   "values": [
+    236.05388479772955,
+    149.4414936983958,
+    null,
+    139.53384844353423
+   ]
+  },
+  {
+   "title": "2x RTX 4090, rented (vast.ai)\nDolly-15k, 32 sequences x accumulation 8",
+   "source": "bench/results/vast_rtx4090x2_v3/ddp_dolly_accum8.json",
+   "values": [
+    323.8554756389931,
+    308.5300753475167,
+    null,
+    308.52898045559414
+   ]
+  }
+ ],
+ "time_parts": [
+  {
+   "title": "2x A100 SXM4: Dolly-15k, 16 per GPU x accumulation 8",
+   "bars": [
+    {
+     "label": "DistributedSampler",
+     "step_ms": 257.94802494231396,
+     "parts": {
+      "useful": 52.97013493977724,
+      "padding": 157.56570025807753,
+      "small_batches": 29.9003443786412,
+      "waiting": 15.619806328043556,
+      "fixed": 1.8920390377744185
+     }
+    },
+    {
+     "label": "Evencut",
+     "step_ms": 136.53962430605367,
+     "parts": {
+      "useful": 52.97013493977734,
+      "padding": 6.1466986262105205,
+      "small_batches": 75.39285318627195,
+      "waiting": 0.00589989974787386,
+      "fixed": 2.0240376540459692
+     }
+    }
+   ],
+   "probe": "bench/results/vast_a100x2_v3/probe_small.json",
+   "measured": [
+    236.05388479772955,
+    139.53384844353423
+   ],
+   "measured_source": "bench/results/vast_a100x2_v3/ddp_dolly_accum8.json"
+  },
+  {
+   "title": "2x RTX 4090: Wikipedia-TR, 6 per GPU",
+   "bars": [
+    {
+     "label": "DistributedSampler",
+     "step_ms": 72.63968395283459,
+     "parts": {
+      "useful": 10.161878454320428,
+      "padding": 18.98078207311941,
+      "small_batches": 11.411144272110523,
+      "waiting": 4.546916435245257,
+      "fixed": 27.538962718038974
+     }
+    },
+    {
+     "label": "Evencut",
+     "step_ms": 56.85230754670273,
+     "parts": {
+      "useful": 10.161878454320439,
+      "padding": 6.8437050239866695,
+      "small_batches": 16.752562132884822,
+      "waiting": 0.061998533475034485,
+      "fixed": 23.032163402035774
+     }
+    }
+   ],
+   "probe": "bench/results/vast_rtx4090x2_v3/probe_small.json",
+   "measured": [
+    71.80896017525811,
+    66.22901204245863
+   ],
+   "measured_source": "bench/results/vast_rtx4090x2_v3/ddp_wikipedia.json"
+  }
+ ],
+ "accuracy": {
+  "probe_median": 0.03605680414173357,
+  "estimate_median": 0.24607719129282674,
+  "machines": 8,
+  "source": "bench/results/backtest_probe.json"
+ },
+ "cost": {
+  "job": [
+   "Dolly-15k, base model, accumulation 4",
+   "Evencut"
+  ],
+  "rows": [
+   {
+    "machine": "vast_rtx4090x2_v2",
+    "label": "2x RTX 4090, box 2 (PXB, $0.98/h)",
+    "measured": 0.6965481163958128,
+    "probe": 0.6813851622827426,
+    "estimate": 0.6199524966892596
+   },
+   {
+    "machine": "vast_rtx4090x2_v3",
+    "label": "2x RTX 4090, box 3 (NODE, $0.89/h)",
+    "measured": 0.8181620621287493,
+    "probe": 0.8160304391771835,
+    "estimate": 0.6310757366778086
+   },
+   {
+    "machine": "vast_rtx4090x2",
+    "label": "2x RTX 4090, box 1 (PHB, $0.95/h)",
+    "measured": 0.8335568222651026,
+    "probe": 0.8996493699134999,
+    "estimate": 0.7390027375216748
+   },
+   {
+    "machine": "vast_a100x2_v2",
+    "label": "2x A100 SXM4 40GB, box 2 (SYS, $1.42/h)",
+    "measured": 0.8591256886067168,
+    "probe": 0.8505653474363781,
+    "estimate": 0.48520529545024155
+   },
+   {
+    "machine": "vast_a100x2",
+    "label": "2x A100 SXM4 40GB, box 1 (SYS, $1.34/h)",
+    "measured": 0.8778349978383632,
+    "probe": 0.9136935859720052,
+    "estimate": 0.47455160571971644
+   },
+   {
+    "machine": "vast_a100x2_v3",
+    "label": "2x A100 SXM4 80GB, box 3 (NV4, $1.90/h)",
+    "measured": 1.1182310443686285,
+    "probe": 1.151253186331924,
+    "estimate": 0.5951615282796751
+   }
+  ],
+  "source": "bench/results/backtest_probe.json"
+ },
+ "scaling": {
+  "series": {
+   "A100": {
+    "points": [
+     [
+      0,
+      0.3377168991943532
+     ],
+     [
+      0,
+      0.29906081817855806
+     ],
+     [
+      0,
+      0.4486247767410208
+     ],
+     [
+      1,
+      0.473850481187571
+     ],
+     [
+      1,
+      0.5081375903709489
+     ],
+     [
+      1,
+      0.5069928411195498
+     ],
+     [
+      2,
+      0.6223336945551539
+     ],
+     [
+      3,
+      0.7495339989487402
+     ]
+    ],
+    "datasheet": 10.399999999999999
+   },
+   "RTX 4090": {
+    "points": [
+     [
+      0,
+      0.8658204924165454
+     ],
+     [
+      0,
+      0.4789301867410895
+     ],
+     [
+      0,
+      0.6075596160486753
+     ],
+     [
+      1,
+      0.8377291874622729
+     ],
+     [
+      1,
+      0.8319485842948602
+     ],
+     [
+      1,
+      0.7726186148830692
+     ],
+     [
+      2,
+      1.0221840591428508
+     ],
+     [
+      3,
+      0.9299999877189056
+     ]
+    ],
+    "datasheet": 5.5
+   }
+  },
+  "source": "bench/results/backtest_probe.json (section F)"
+ },
+ "sync": [
+  {
+   "key": "ddp_a100x4",
+   "label": "4x A100 SXM4, 1 Nov",
+   "ms": 1.0247696191072464,
+   "links": [
+    "NV12"
+   ],
+   "gpus": 4,
+   "geforce": false,
+   "source": "bench/results/ddp_a100x4.json",
+   "klass": 0,
+   "listed_nvlink": 300
+  },
+  {
+   "key": "vast_a100x2_v3",
+   "label": "2x A100 SXM4 80GB, 2 Nov, box 3",
+   "ms": 1.8373220227658749,
+   "links": [
+    "NV4"
+   ],
+   "gpus": 2,
+   "geforce": false,
+   "source": "bench/results/vast_a100x2_v3/probe_small.json",
+   "klass": 0,
+   "listed_nvlink": 300
+  },
+  {
+   "key": "vast_a100x2_v2",
+   "label": "2x A100 SXM4 40GB, 2 Nov, box 2",
+   "ms": 8.654528472106904,
+   "links": [
+    "SYS"
+   ],
+   "gpus": 2,
+   "geforce": false,
+   "source": "bench/results/vast_a100x2_v2/probe_small.json",
+   "klass": 1,
+   "listed_nvlink": 300
+  },
+  {
+   "key": "vast_a100x2",
+   "label": "2x A100 SXM4 40GB, 2 Nov, box 1",
+   "ms": 11.598732322454453,
+   "links": [
+    "SYS"
+   ],
+   "gpus": 2,
+   "geforce": false,
+   "source": "bench/results/vast_a100x2/probe_small.json",
+   "klass": 1,
+   "listed_nvlink": 0
+  },
+  {
+   "key": "vast_rtx4090x2_v2",
+   "label": "2x RTX 4090, 2 Nov, box 2",
+   "ms": 15.978313516825438,
+   "links": [
+    "PXB"
+   ],
+   "gpus": 2,
+   "geforce": true,
+   "source": "bench/results/vast_rtx4090x2_v2/probe_small.json",
+   "klass": 2,
+   "listed_nvlink": 0
+  },
+  {
+   "key": "vast_rtx4090x2_v3",
+   "label": "2x RTX 4090, 2 Nov, box 3",
+   "ms": 33.98103499785066,
+   "links": [
+    "NODE"
+   ],
+   "gpus": 2,
+   "geforce": true,
+   "source": "bench/results/vast_rtx4090x2_v3/probe_small.json",
+   "klass": 2,
+   "listed_nvlink": 0
+  },
+  {
+   "key": "vast_rtx4090x2",
+   "label": "2x RTX 4090, 2 Nov, box 1",
+   "ms": 47.27006649773102,
+   "links": [
+    "PHB"
+   ],
+   "gpus": 2,
+   "geforce": true,
+   "source": "bench/results/vast_rtx4090x2/probe_small.json",
+   "klass": 2,
+   "listed_nvlink": 0
+  },
+  {
+   "key": "ddp_batches",
+   "label": "8x RTX 4090, 1 Nov",
+   "ms": 64.19035303406417,
+   "links": [
+    "NODE",
+    "PIX",
+    "PXB"
+   ],
+   "gpus": 8,
+   "geforce": true,
+   "source": "bench/results/ddp_batches.json",
+   "klass": 2,
+   "listed_nvlink": 0
+  }
+ ]
+}

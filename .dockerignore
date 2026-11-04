@@ -1,0 +1,12 @@
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.hypothesis
+build/
+dist/
+*.egg-info
+.venv/
+bench/
+examples/
+tests/
+docker/compose.yaml

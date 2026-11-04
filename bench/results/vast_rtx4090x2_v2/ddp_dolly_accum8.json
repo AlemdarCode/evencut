@@ -1,0 +1,133 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "Dolly-15k",
+ "gpus": 2,
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-5.15.0-94-generic-x86_64-with-glibc2.39",
+ "model": "small",
+ "params": 29893120,
+ "allreduce_ms": 15.879041515290737,
+ "seq_len": 1024,
+ "global_batch": 32,
+ "steps": 80,
+ "accum": 8,
+ "topology": "\t\u001b[4mGPU0\tGPU1\tNIC0\tNIC1\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tPXB\tNODE\tNODE\t0-31,64-95\t0\t\tN/A\nGPU1\tPXB\t X \tNODE\tNODE\t0-31,64-95\t0\t\tN/A\nNIC0\tNODE\tNODE\t X \tPIX\t\t\t\t\nNIC1\tNODE\tNODE\tPIX\t X \t\t\t\t\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n\nNIC Legend:\n\n  NIC0: mlx5_0\n  NIC1: mlx5_1\n\n",
+ "sampler_checked": [
+  "pooled",
+  "window"
+ ],
+ "args": {
+  "lengths": "/root/run/data/dolly15k_gpt2.txt",
+  "offset": "0",
+  "name": "Dolly-15k",
+  "seq_len": "1024",
+  "vocab": "8192",
+  "model": "small",
+  "global_batch": "32",
+  "steps": "80",
+  "warmup": "5",
+  "accum": "8",
+  "extended": "True",
+  "repeats": "2",
+  "seed": "20261101",
+  "out_dir": "/root/out",
+  "out_name": "ddp_dolly_accum8"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 346.9143924303353,
+   "tokens_per_s": 120191.03533841732,
+   "wasted": 0.6348094170403588
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 351.27101680263877,
+   "tokens_per_s": 118010.02080194565,
+   "wasted": 0.7310673098881023
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 352.98223961144686,
+   "tokens_per_s": 117437.91995209412,
+   "wasted": 0.7328617403957566
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 352.16516349464655,
+   "tokens_per_s": 117710.39357965955,
+   "wasted": 0.7213322487832423
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 349.3521067779511,
+   "tokens_per_s": 118658.22245161935,
+   "wasted": 0.6192902957988626
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 349.49989574961364,
+   "tokens_per_s": 118608.04682384752,
+   "wasted": 0.5321417970332732
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 351.86807340942323,
+   "tokens_per_s": 117809.77909799147,
+   "wasted": 0.5050671117701699
+  },
+  {
+   "order": "any order",
+   "split": "LPT on padded size (not contiguous)",
+   "step_ms": 351.75547720864415,
+   "tokens_per_s": 117847.48976463503,
+   "wasted": 0.7409140057125356
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 346.62989932112396,
+   "tokens_per_s": 119590.08752905288,
+   "wasted": 0.012661634722794468
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 344.0539135597646,
+   "tokens_per_s": 120485.47732272556,
+   "wasted": 0.012661634722794468
+  },
+  {
+   "order": "random",
+   "split": "Evencut, whole optimizer step balanced (window)",
+   "step_ms": 345.2748481184244,
+   "tokens_per_s": 120059.4257760184,
+   "wasted": 0.0981880440055779
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Hugging Face group_by_length",
+   "step_ms": 347.0464324578643,
+   "tokens_per_s": 119446.55274631866,
+   "wasted": 0.017354263066069908
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Evencut, length-grouped steps + balanced",
+   "step_ms": 347.606033552438,
+   "tokens_per_s": 119254.25912880924,
+   "wasted": 0.01831998882234398
+  }
+ ]
+}

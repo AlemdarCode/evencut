@@ -1,0 +1,133 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "Dolly-15k",
+ "gpus": 2,
+ "gpu": "NVIDIA GeForce RTX 4090",
+ "backend": "nccl",
+ "torch": "2.14.1+cu126",
+ "nccl": "2.29.3",
+ "platform": "Linux-5.15.0-194-generic-x86_64-with-glibc2.39",
+ "model": "small",
+ "params": 29893120,
+ "allreduce_ms": 33.82333245826885,
+ "seq_len": 1024,
+ "global_batch": 32,
+ "steps": 80,
+ "accum": 8,
+ "topology": "\t\u001b[4mGPU0\tGPU1\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\t0-127\t0\t\tN/A\nGPU1\tNODE\t X \t0-127\t0\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+ "sampler_checked": [
+  "pooled",
+  "window"
+ ],
+ "args": {
+  "lengths": "/root/run/data/dolly15k_gpt2.txt",
+  "offset": "0",
+  "name": "Dolly-15k",
+  "seq_len": "1024",
+  "vocab": "8192",
+  "model": "small",
+  "global_batch": "32",
+  "steps": "80",
+  "warmup": "5",
+  "accum": "8",
+  "extended": "True",
+  "repeats": "2",
+  "seed": "20261101",
+  "out_dir": "/root/out",
+  "out_name": "ddp_dolly_accum8"
+ },
+ "rows": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 304.6734292001929,
+   "tokens_per_s": 136854.73035655712,
+   "wasted": 0.6348094170403588
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 323.8554756389931,
+   "tokens_per_s": 127999.99727720795,
+   "wasted": 0.7310673098881023
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 326.0421175567899,
+   "tokens_per_s": 127141.54941279833,
+   "wasted": 0.7328617403957566
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 313.69623341597617,
+   "tokens_per_s": 132145.35459541422,
+   "wasted": 0.7213322487832423
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 363.0772491975222,
+   "tokens_per_s": 114172.67287229106,
+   "wasted": 0.6192902957988626
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 309.5897169027012,
+   "tokens_per_s": 133898.18116287154,
+   "wasted": 0.5321417970332732
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 316.02066414197907,
+   "tokens_per_s": 131173.3842233055,
+   "wasted": 0.5050671117701699
+  },
+  {
+   "order": "any order",
+   "split": "LPT on padded size (not contiguous)",
+   "step_ms": 324.6697847964242,
+   "tokens_per_s": 127678.95856398324,
+   "wasted": 0.7409140057125356
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 299.0027565509081,
+   "tokens_per_s": 138639.19008031668,
+   "wasted": 0.012661634722794468
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 300.4572184407152,
+   "tokens_per_s": 137968.0615268007,
+   "wasted": 0.012661634722794468
+  },
+  {
+   "order": "random",
+   "split": "Evencut, whole optimizer step balanced (window)",
+   "step_ms": 308.52898045559414,
+   "tokens_per_s": 134358.52910409597,
+   "wasted": 0.0981880440055779
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Hugging Face group_by_length",
+   "step_ms": 308.5300753475167,
+   "tokens_per_s": 134358.05230108713,
+   "wasted": 0.017354263066069908
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Evencut, length-grouped steps + balanced",
+   "step_ms": 306.25288280425593,
+   "tokens_per_s": 135357.09319835316,
+   "wasted": 0.01831998882234398
+  }
+ ]
+}

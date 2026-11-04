@@ -1,0 +1,173 @@
+{
+ "format": "evencut-probe/1",
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "machine": {
+  "gpus": 1,
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.14.1+cu130",
+  "gpu": "NVIDIA GeForce RTX 4060",
+  "memory_gb": 8.0,
+  "gpus_present": 1,
+  "cuda": "13.0",
+  "vendor": "nvidia",
+  "rocm": null,
+  "nccl": null,
+  "driver": "616.92",
+  "power_limit_w": 115.0,
+  "pcie_gen": 3.0,
+  "pcie_width": 8.0,
+  "topology": "\tGPU0\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\nGPU0\t X \t\t\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks\n",
+  "links": null,
+  "worst_link": null,
+  "p2p": null,
+  "free_memory_gb": 6.9,
+  "shapes": [
+   [
+    1,
+    32,
+    608.959
+   ],
+   [
+    1,
+    64,
+    617.785
+   ],
+   [
+    1,
+    128,
+    634.827
+   ],
+   [
+    1,
+    256,
+    798.825
+   ],
+   [
+    1,
+    512,
+    1144.334
+   ],
+   [
+    32,
+    32,
+    1886.229
+   ],
+   [
+    16,
+    64,
+    1876.283
+   ],
+   [
+    8,
+    128,
+    1862.308
+   ],
+   [
+    4,
+    256,
+    1874.521
+   ],
+   [
+    2,
+    512,
+    1888.26
+   ],
+   [
+    1,
+    1024,
+    1912.208
+   ],
+   [
+    1,
+    2048,
+    3540.345
+   ]
+  ]
+ },
+ "model": {
+  "params": 6581911552,
+  "layers": 32,
+  "d_model": 4096,
+  "heads": 64,
+  "vocab": 32000,
+  "probe_layers": 2,
+  "max_len": 2048,
+  "attention_constant": 50216
+ },
+ "curve": {
+  "a": 50216,
+  "points": [
+   [
+    1607936.0,
+    608.9594304065351
+   ],
+   [
+    3217920.0,
+    617.7853074447793
+   ],
+   [
+    6444032.0,
+    634.8274852569983
+   ],
+   [
+    12920832.0,
+    798.8248585202373
+   ],
+   [
+    25972736.0,
+    1144.3337823604707
+   ],
+   [
+    51453952.0,
+    1874.8352299134267
+   ],
+   [
+    51486720.0,
+    1874.8352299134267
+   ],
+   [
+    51552256.0,
+    1874.8352299134267
+   ],
+   [
+    51683328.0,
+    1874.8352299134267
+   ],
+   [
+    51945472.0,
+    1888.2596554627003
+   ],
+   [
+    52469760.0,
+    1912.2081086768403
+   ],
+   [
+    107036672.0,
+    3540.3452094716695
+   ]
+  ]
+ },
+ "optimizer_ms": 4616.614612661313,
+ "allreduce": null,
+ "watts": [
+  113.63333333333333
+ ],
+ "tflops": [
+  27.15382579114333
+ ],
+ "gpu_speed": [
+  1.0
+ ],
+ "max_tokens_tested": 16384,
+ "max_tokens_fit": 2048,
+ "price_per_hour": null,
+ "launch_ms": 604.4435177443485,
+ "overlap": null,
+ "overlap_points": [],
+ "sync_points": [],
+ "sync_raw": [],
+ "notes": [
+  "measured with 2 of 32 layers; times scaled by the FLOP ratio"
+ ]
+}

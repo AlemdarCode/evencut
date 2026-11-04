@@ -1,0 +1,158 @@
+{
+ "evencut": "1.0.0",
+ "date": "2026-11-02",
+ "dataset": "Dolly-15k",
+ "gpu": "NVIDIA GeForce RTX 4060",
+ "torch": "2.14.1+cu130",
+ "params": 29893120,
+ "stories": 15011,
+ "mean_len": 166.3314902404903,
+ "median_len": 103,
+ "p90_len": 374,
+ "seq_len": 1024,
+ "alloc_conf": "expandable_segments:True",
+ "args": {
+  "tokens": "None",
+  "jsonl": "None",
+  "lengths": "~/.cache/evencut/data/lengths/dolly15k_gpt2.txt",
+  "eot": "None",
+  "fields": "text",
+  "tokenizer": "gpt2",
+  "name": "Dolly-15k",
+  "out_name": "gpu_batches_dolly_accum8",
+  "skip_a": "True",
+  "attention_cost": "False",
+  "save_lengths": "None",
+  "seq_len": "1024",
+  "vocab": "8192",
+  "stories_a": "20480",
+  "fixed": "16",
+  "budget": "16384",
+  "gpus": "8",
+  "global_batch": "128",
+  "steps_b": "80",
+  "accum": "8",
+  "extended": "True",
+  "reps": "3",
+  "seed": "20261101",
+  "out_dir": "bench/results"
+ },
+ "attention_constant": null,
+ "accum": 8,
+ "sorted_rows_identical": true,
+ "part_a": [],
+ "part_b": [
+  {
+   "order": "noise floor",
+   "split": "identical slices",
+   "step_ms": 1909.4961199967656,
+   "idle": 0.00031444421032789105,
+   "tokens_per_s": 92170.91260719509,
+   "wasted": 0.8321533203125
+  },
+  {
+   "order": "random",
+   "split": "equal counts",
+   "step_ms": 1364.9639900046168,
+   "idle": 0.18525292377946956,
+   "tokens_per_s": 123943.78257511964,
+   "wasted": 0.7347775865874704
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 1573.631229995226,
+   "idle": 0.18342722916668286,
+   "tokens_per_s": 107508.5425195287,
+   "wasted": 0.7325742886959908
+  },
+  {
+   "order": "random",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 1308.3158699955675,
+   "idle": 0.08743260810923226,
+   "tokens_per_s": 129310.3629481871,
+   "wasted": 0.7139731804419702
+  },
+  {
+   "order": "length-grouped",
+   "split": "equal counts",
+   "step_ms": 2040.6358600012027,
+   "idle": 0.7508275349528254,
+   "tokens_per_s": 82904.94316800857,
+   "wasted": 0.3097717881598788
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced tokens",
+   "step_ms": 567.4034299911,
+   "idle": 0.31187987353888813,
+   "tokens_per_s": 298163.1605622364,
+   "wasted": 0.20197700537836782
+  },
+  {
+   "order": "length-grouped",
+   "split": "Evencut, balanced padded size",
+   "step_ms": 407.7351100029773,
+   "idle": 0.06797960998603303,
+   "tokens_per_s": 414923.3064544396,
+   "wasted": 0.18102132467521148
+  },
+  {
+   "order": "any order",
+   "split": "LPT on padded size (not contiguous)",
+   "step_ms": 1432.3882099983166,
+   "idle": 0.032130496941070175,
+   "tokens_per_s": 118109.60102792163,
+   "wasted": 0.7490275825360648
+  },
+  {
+   "order": "sorted dataset",
+   "split": "token budget per GPU (fairseq-style)",
+   "step_ms": 330.9192999906372,
+   "idle": 0.037456945673331465,
+   "tokens_per_s": 511238.84283807746,
+   "wasted": 0.0032944891538724264
+  },
+  {
+   "order": "sorted dataset",
+   "split": "Evencut, padded_slices over the sorted data",
+   "step_ms": 331.6714199972921,
+   "idle": 0.035734956437283305,
+   "tokens_per_s": 510079.523889581,
+   "wasted": 0.0032944891538724264
+  },
+  {
+   "order": "random",
+   "split": "Evencut, whole optimizer step balanced (window)",
+   "step_ms": 337.15317999594845,
+   "idle": 0.0364381406567984,
+   "tokens_per_s": 501786.16141788434,
+   "wasted": 0.02930300156237542
+  },
+  {
+   "order": "random",
+   "split": "Hugging Face batch_rebalance",
+   "step_ms": 339.665470001637,
+   "idle": 0.03655368252198854,
+   "tokens_per_s": 498074.7675034046,
+   "wasted": 0.03050953910195142
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Hugging Face group_by_length",
+   "step_ms": 395.88122999703046,
+   "idle": 0.07253501257926875,
+   "tokens_per_s": 427347.36375672324,
+   "wasted": 0.013649720149253697
+  },
+  {
+   "order": "pooled (like group_by_length)",
+   "split": "Evencut, length-grouped steps + balanced",
+   "step_ms": 369.7869800016633,
+   "idle": 0.02560087094393393,
+   "tokens_per_s": 457503.39830580034,
+   "wasted": 0.007871753114424007
+  }
+ ]
+}
