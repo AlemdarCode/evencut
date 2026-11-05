@@ -668,8 +668,9 @@ Kiralık makinelerin toplam maliyeti yaklaşık **3,13 $** oldu. Her makine koş
 
 **Test takımları.**
 
-- Python: native arka uçta 135, saf Python arka ucunda 134, PyTorch, transformers, Lightning ve
-  Accelerate kuruluyken 145 test geçiyor.
+- Python: native arka uçta 135, saf Python arka ucunda 134 test geçiyor. Atlananlar PyTorch ya
+  da transformers gerektiriyor (saf Python arka ucunda biri de native kütüphaneyi). PyTorch,
+  transformers, Lightning, Accelerate ve HTTP servisi kuruluyken 162 testin hepsi çalışıp geçiyor.
 - Geliştirme sırasında eğitim katmanlarına bilerek sokulan 60 hatanın hepsini bu testler yakaladı.
   Mutasyon betikleri depoda yok.
 - Motorun testleri [aşağıda](#bölme-motoru) anlatılıyor.

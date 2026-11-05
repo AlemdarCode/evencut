@@ -664,8 +664,10 @@ The rented machines cost about **$3.13 in total**. Every instance was destroyed 
 
 **Test suites.**
 
-- Python: 135 tests pass on the native backend, 134 on the pure-Python backend, and 145 with
-  PyTorch, transformers, Lightning and Accelerate installed.
+- Python: 135 tests pass on the native backend and 134 on the pure-Python backend. The skipped
+  ones need PyTorch or transformers (and, on the pure backend, one needs the native library).
+  With PyTorch, transformers, Lightning, Accelerate and the HTTP service installed, all 162 run
+  and pass.
 - During development, 60 deliberately injected bugs in the training layers were all caught by
   these tests. The mutation scripts are not part of the repository.
 - The engine's tests are described [below](#the-partitioning-engine).
