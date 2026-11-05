@@ -13,12 +13,15 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends g++ cmake ninja-build \
  && rm -rf /var/lib/apt/lists/*
 WORKDIR /src
-COPY CMakeLists.txt pyproject.toml README.md LICENSE-MIT LICENSE-APACHE ./
+COPY CMakeLists.txt pyproject.toml LICENSE-MIT LICENSE-APACHE ./
+COPY docs/pypi.md docs/pypi.md
 COPY include include
 COPY src src
 COPY cli cli
 COPY python python
+# the grep fails the build if the wheel came out without the native library
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /wheels . \
+ && python -m zipfile -l /wheels/*.whl | grep -q 'evencut/libevencut.so' \
  && cmake -S . -B /build -G Ninja -DCMAKE_BUILD_TYPE=Release \
           -DEVENCUT_BUILD_TESTS=OFF -DEVENCUT_BUILD_SHARED=OFF -DEVENCUT_BUILD_CLI=ON \
  && cmake --build /build --target evencut_cli

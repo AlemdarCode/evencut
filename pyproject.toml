@@ -6,7 +6,7 @@ build-backend = "scikit_build_core.build"
 name = "evencut"
 version = "1.0.0"
 description = "Find and fix wasted GPU time in data-parallel training, and pick the machine that finishes the job for the least money"
-readme = "README.md"
+readme = "docs/pypi.md"
 requires-python = ">=3.9"
 license = "MIT OR Apache-2.0"
 license-files = ["LICENSE-MIT", "LICENSE-APACHE"]
@@ -14,10 +14,18 @@ authors = [{ name = "AlemdarCode" }]
 keywords = ["distributed training", "data parallel", "padding", "batch sampler", "load balancing", "gpu",
             "pytorch", "partitioning", "pipeline parallelism", "linear partition"]
 classifiers = [
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
-    "Operating System :: OS Independent",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: C++",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: System :: Distributed Computing",
@@ -33,8 +41,10 @@ hf = ["transformers>=5.17", "accelerate>=1.0"]
 
 [project.urls]
 Homepage = "https://github.com/AlemdarCode/evencut"
+Documentation = "https://github.com/AlemdarCode/evencut#readme"
 Repository = "https://github.com/AlemdarCode/evencut"
 Issues = "https://github.com/AlemdarCode/evencut/issues"
+Changelog = "https://github.com/AlemdarCode/evencut/releases"
 
 [project.scripts]
 evencut-train = "evencut.train.cli:main"
@@ -42,12 +52,40 @@ evencut-train = "evencut.train.cli:main"
 [tool.scikit-build]
 minimum-version = "build-system.requires"
 wheel.packages = ["python/evencut"]
+# The native library is loaded with ctypes, not as a CPython extension, so one wheel per
+# platform serves every Python version.
+wheel.py-api = "py3"
 cmake.build-type = "Release"
+sdist.exclude = ["bench/", "docs/figures/", "docker/", "examples/", ".github/"]
 
 [tool.scikit-build.cmake.define]
 EVENCUT_BUILD_SHARED = "ON"
 EVENCUT_BUILD_CLI = "OFF"
 EVENCUT_BUILD_TESTS = "OFF"
+# MSVC: link the C++ runtime statically, so the DLL loads without the Visual C++ Redistributable
+CMAKE_MSVC_RUNTIME_LIBRARY = "MultiThreaded"
+
+# No C++20 compiler (a platform without a published wheel): install the pure-Python backend.
+[[tool.scikit-build.overrides]]
+if.failed = true
+wheel.cmake = false
+
+[tool.cibuildwheel]
+build = "cp313-*"
+skip = "*-musllinux_*"
+test-extras = ["test"]
+test-sources = ["tests"]
+test-command = [
+    "python -c \"import evencut, sys; print(evencut.backend); sys.exit(evencut.backend != 'native')\"",
+    "pytest tests/python -q -p no:cacheprovider",
+]
+
+[tool.cibuildwheel.macos]
+environment = { MACOSX_DEPLOYMENT_TARGET = "11.0" }
+
+[tool.cibuildwheel.windows]
+# The DLL carries its own runtime and is not an extension module, so there is nothing to bundle.
+repair-wheel-command = ""
 
 [tool.pytest.ini_options]
 testpaths = ["tests/python"]

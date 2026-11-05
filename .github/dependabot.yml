@@ -1,0 +1,13 @@
+# Keeps the commit-pinned GitHub Actions in .github/workflows up to date: one pull request a month
+# with every update in it, tested by the tests workflow before it is merged.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci
