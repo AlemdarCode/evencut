@@ -1,8 +1,6 @@
 <h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.png">
-    <img alt="Evencut" src="docs/logo-light.png" width="100%">
-  </picture>
+  <img alt="Evencut" src="docs/logo-light.png#gh-light-mode-only" width="100%">
+  <img alt="Evencut" src="docs/logo-dark.png#gh-dark-mode-only" width="100%">
 </h1>
 
 <p align="right"><b>English</b> · <a href="README.tr.md">Türkçe</a></p>
