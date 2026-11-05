@@ -7,6 +7,7 @@ bir batch sampler ile geri kazan ve işi en az parayla bitirecek makineyi seç.*
 
 [![Lisans: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](#lisans)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](pyproject.toml)
+[![PyPI](https://img.shields.io/pypi/v/evencut)](https://pypi.org/project/evencut/)
 [![tests](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml/badge.svg)](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml)
 
 Veri paralel eğitimde her GPU kendi batch'ini içindeki en uzun diziye kadar doldurur, her optimizer
@@ -15,7 +16,7 @@ götürebilir. Evencut bunun ne kadar olduğunu ölçer, bir adımda birlikte e�
 değiştirmeden bu kaybı giderir ve işini en az parayla çalıştıracak makineyi söyler.
 
 ```bash
-git clone https://github.com/AlemdarCode/evencut && cd evencut && pip install ".[train]"   # henüz PyPI'de yok
+pip install "evencut[train]"
 
 # 1. GPU zamanı nereye gidiyor? GPU gerekmez; birkaç saniye sürer.
 evencut-train diagnose lengths.txt --gpus 8 --per-device-batch 8 --max-len 2048
@@ -94,14 +95,18 @@ Her sayının nereden geldiği [Nasıl test ettik](#nasıl-test-ettik) bölümü
 
 ## Kurulum
 
-Evencut henüz PyPI'de yok; depoyu klonlayarak kur. Native kütüphane için C++20 derleyicisi ve
-CMake gerekir.
-
 ```bash
-git clone https://github.com/AlemdarCode/evencut && cd evencut
-pip install ".[train]"     # evencut, evencut-train komutu ve `evencut-train lengths` için tokenizers
-pip install ".[hf]"        # Hugging Face Trainer entegrasyonunu ekler
+pip install "evencut[train]"   # evencut, evencut-train komutu ve `evencut-train lengths` için tokenizers
+pip install "evencut[hf]"      # Hugging Face Trainer entegrasyonunu ekler
 ```
+
+PyPI'de native kütüphaneli hazır paketler (wheel) Linux (x86-64 ve ARM64), Windows (64 ve
+32 bit) ve macOS (Apple Silicon ve Intel) için var. Diğer sistemlerde pip kütüphaneyi kaynaktan
+derler; bunun için C++20 derleyicisi gerekir. Derleme başarısız olursa saf Python arka ucu kurulur:
+aynı sonuçları daha yavaş verir. Hangisinin kurulu olduğunu
+`python -c "import evencut; print(evencut.backend)"` gösterir. Evencut'ın kendisi üzerinde
+çalışmak için depoyu klonlayarak kur:
+`git clone https://github.com/AlemdarCode/evencut && cd evencut && pip install ".[train]"`.
 
 PyTorch'u GPU'na uyan sürümüyle kendin kur. Sampler ve `probe` için gerekir; `diagnose` ve `pick`
 için gerekmez.
@@ -764,7 +769,7 @@ için tek bir derleyici çağrısıyla derle: `g++ -std=c++20 -O2 -Iinclude cli/
 **HTTP servisi**
 
 ```bash
-pip install ".[service]"
+pip install "evencut[service]"
 uvicorn evencut.service:app --host 127.0.0.1 --port 8000
 curl -s -X POST http://127.0.0.1:8000/v1/partition -H "Content-Type: application/json" \
      -d '{"weights":[5,3,8,2,7,4,6,1,9,5],"k":3}'
@@ -905,6 +910,7 @@ docs/figures/           grafikler (açık ve koyu SVG; Türkçeleri tr/ altında
 examples/clients/       HTTP istemcileri (Python, JavaScript, Go)
 docker/                 Dockerfile ve compose dosyası
 .github/workflows/      GitHub Actions'ın her gönderimde ve pull request'te çalıştırdığı testler
+                        ve PyPI'ye yayımlama (release.yml)
 openapi.json            HTTP API tanımı
 ```
 

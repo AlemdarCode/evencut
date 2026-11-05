@@ -7,6 +7,7 @@ drop-in batch sampler, and pick the machine that finishes the job for the least 
 
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue)](#license)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue)](pyproject.toml)
+[![PyPI](https://img.shields.io/pypi/v/evencut)](https://pypi.org/project/evencut/)
 [![tests](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml/badge.svg)](https://github.com/AlemdarCode/evencut/actions/workflows/tests.yml)
 
 In data-parallel training every GPU pads its batch to the longest sequence in it, and every
@@ -15,7 +16,7 @@ time. Evencut measures how much, removes it without changing which sequences tra
 step, and tells you which machine runs your job for the least money.
 
 ```bash
-git clone https://github.com/AlemdarCode/evencut && cd evencut && pip install ".[train]"   # not on PyPI yet
+pip install "evencut[train]"
 
 # 1. Where does the GPU time go? No GPU needed; takes seconds.
 evencut-train diagnose lengths.txt --gpus 8 --per-device-batch 8 --max-len 2048
@@ -93,14 +94,17 @@ Where every number comes from is listed in [How we tested](#how-we-tested).
 
 ## Install
 
-Evencut is not on PyPI yet. Install it from a clone. The native library needs a C++20 compiler
-and CMake.
-
 ```bash
-git clone https://github.com/AlemdarCode/evencut && cd evencut
-pip install ".[train]"     # evencut, the evencut-train command, and tokenizers for `evencut-train lengths`
-pip install ".[hf]"        # adds the Hugging Face Trainer integration
+pip install "evencut[train]"   # evencut, the evencut-train command, and tokenizers for `evencut-train lengths`
+pip install "evencut[hf]"      # adds the Hugging Face Trainer integration
 ```
+
+PyPI has wheels with the native library for Linux (x86-64 and ARM64), Windows (64- and
+32-bit) and macOS (Apple Silicon and Intel). Elsewhere pip builds the library from source, which needs a C++20
+compiler; if that build fails, it installs the pure-Python backend, which gives the same answers
+more slowly. `python -c "import evencut; print(evencut.backend)"` shows which one you have. To
+work on Evencut itself, install from a clone:
+`git clone https://github.com/AlemdarCode/evencut && cd evencut && pip install ".[train]"`.
 
 Install PyTorch yourself, in the build that matches your GPU. The sampler and `probe` need it;
 `diagnose` and `pick` do not.
@@ -759,7 +763,7 @@ engine is header-only: `g++ -std=c++20 -O2 -Iinclude cli/evencut_cli.cpp -o even
 **HTTP service**
 
 ```bash
-pip install ".[service]"
+pip install "evencut[service]"
 uvicorn evencut.service:app --host 127.0.0.1 --port 8000
 curl -s -X POST http://127.0.0.1:8000/v1/partition -H "Content-Type: application/json" \
      -d '{"weights":[5,3,8,2,7,4,6,1,9,5],"k":3}'
@@ -900,7 +904,8 @@ bench/results/          every measurement quoted in this README
 docs/figures/           the figures (light and dark SVG; Turkish copies in tr/) and their numbers
 examples/clients/       HTTP clients (Python, JavaScript, Go)
 docker/                 Dockerfile and compose file
-.github/workflows/      the test suites, run by GitHub Actions on every push and pull request
+.github/workflows/      the test suites, run by GitHub Actions on every push and pull request,
+                        and the PyPI release (release.yml)
 openapi.json            HTTP API description
 ```
 
