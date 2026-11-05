@@ -1,6 +1,11 @@
 <p align="right"><a href="README.md">English</a> · <b>Türkçe</b></p>
 
-<h1><img alt="Evencut" src="docs/logo.jpg" width="100%"></h1>
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.png">
+    <img alt="Evencut" src="docs/logo-light.png" width="100%">
+  </picture>
+</h1>
 
 **Veri paralel eğitimin dolguya (padding) ve beklemeye harcadığı GPU zamanını bul, bunu tak-çalıştır
 bir batch sampler ile geri kazan ve işi en az parayla bitirecek makineyi seç.**
@@ -907,7 +912,7 @@ tests/                  C++, C ve Python testleri
 bench/                  kıyaslamalar, GPU koşuları, geriye dönük testler, grafik betiği
 bench/results/          bu README'de geçen her ölçüm
 docs/figures/           grafikler (açık ve koyu SVG; Türkçeleri tr/ altında) ve sayıları
-docs/                   PyPI sayfası (pypi.md) ve en üstteki başlık resmi (logo.jpg)
+docs/                   PyPI sayfası (pypi.md) ve en üstteki logo (logo-light.png, logo-dark.png)
 examples/clients/       HTTP istemcileri (Python, JavaScript, Go)
 docker/                 Dockerfile ve compose dosyası
 .github/workflows/      GitHub Actions'ın her gönderimde ve pull request'te çalıştırdığı testler

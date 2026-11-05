@@ -56,7 +56,7 @@ wheel.packages = ["python/evencut"]
 # platform serves every Python version.
 wheel.py-api = "py3"
 cmake.build-type = "Release"
-sdist.exclude = ["bench/", "docs/figures/", "docs/logo.jpg", "docker/", "examples/", ".github/"]
+sdist.exclude = ["bench/", "docs/figures/", "docs/logo-*.png", "docker/", "examples/", ".github/"]
 
 [tool.scikit-build.cmake.define]
 EVENCUT_BUILD_SHARED = "ON"

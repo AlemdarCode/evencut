@@ -1,6 +1,11 @@
 <p align="right"><b>English</b> · <a href="README.tr.md">Türkçe</a></p>
 
-<h1><img alt="Evencut" src="docs/logo.jpg" width="100%"></h1>
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.png">
+    <img alt="Evencut" src="docs/logo-light.png" width="100%">
+  </picture>
+</h1>
 
 **Find the GPU time your data-parallel training loses to padding and waiting, win it back with a
 drop-in batch sampler, and pick the machine that finishes the job for the least money.**
@@ -902,7 +907,7 @@ tests/                  C++, C and Python tests
 bench/                  benchmarks, GPU runs, backtests, figure script
 bench/results/          every measurement quoted in this README
 docs/figures/           the figures (light and dark SVG; Turkish copies in tr/) and their numbers
-docs/                   the PyPI page (pypi.md) and the banner at the top (logo.jpg)
+docs/                   the PyPI page (pypi.md) and the logo at the top (logo-light.png, logo-dark.png)
 examples/clients/       HTTP clients (Python, JavaScript, Go)
 docker/                 Dockerfile and compose file
 .github/workflows/      the test suites, run by GitHub Actions on every push and pull request,
