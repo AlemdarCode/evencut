@@ -73,7 +73,7 @@ wheel.cmake = false
 [tool.cibuildwheel]
 build = "cp313-*"
 skip = "*-musllinux_*"
-test-extras = ["test"]
+test-extras = ["test", "service"]
 test-sources = ["tests"]
 test-command = [
     "python -c \"import evencut, sys; print(evencut.backend); sys.exit(evencut.backend != 'native')\"",

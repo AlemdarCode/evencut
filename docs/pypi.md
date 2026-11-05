@@ -20,7 +20,7 @@ pip install "evencut[hf]"      # adds the Hugging Face Trainer integration
 
 Install PyTorch yourself, in the build that matches your GPU. The sampler and `probe` need it;
 `diagnose` and `pick` do not. Wheels with the native library are published for Linux (x86-64 and
-ARM64), Windows (x86-64) and macOS (Apple Silicon and Intel). Elsewhere pip builds the library
+ARM64), Windows (64- and 32-bit) and macOS (Apple Silicon and Intel). Elsewhere pip builds the library
 from source, which needs a C++20 compiler; if that build fails, pip installs the pure-Python
 version, which gives the same answers more slowly. `python -c "import evencut; print(evencut.backend)"`
 shows which one you have.
