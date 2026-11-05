@@ -1,11 +1,11 @@
-<p align="right"><b>English</b> · <a href="README.tr.md">Türkçe</a></p>
-
 <h1>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.png">
     <img alt="Evencut" src="docs/logo-light.png" width="100%">
   </picture>
 </h1>
+
+<p align="right"><b>English</b> · <a href="README.tr.md">Türkçe</a></p>
 
 **Find the GPU time your data-parallel training loses to padding and waiting, win it back with a
 drop-in batch sampler, and pick the machine that finishes the job for the least money.**

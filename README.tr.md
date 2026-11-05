@@ -1,11 +1,11 @@
-<p align="right"><a href="README.md">English</a> · <b>Türkçe</b></p>
-
 <h1>
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.png">
     <img alt="Evencut" src="docs/logo-light.png" width="100%">
   </picture>
 </h1>
+
+<p align="right"><a href="README.md">English</a> · <b>Türkçe</b></p>
 
 **Veri paralel eğitimin dolguya (padding) ve beklemeye harcadığı GPU zamanını bul, bunu tak-çalıştır
 bir batch sampler ile geri kazan ve işi en az parayla bitirecek makineyi seç.**
