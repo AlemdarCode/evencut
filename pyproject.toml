@@ -11,8 +11,8 @@ requires-python = ">=3.9"
 license = "MIT OR Apache-2.0"
 license-files = ["LICENSE-MIT", "LICENSE-APACHE"]
 authors = [{ name = "AlemdarCode" }]
-keywords = ["distributed training", "data parallel", "padding", "batch sampler", "load balancing", "gpu",
-            "pytorch", "partitioning", "pipeline parallelism", "linear partition"]
+keywords = ["distributed training", "data parallel", "ddp", "padding", "batch sampler", "load balancing", "gpu",
+            "gpu cost", "pytorch", "huggingface", "partitioning", "pipeline parallelism", "linear partition"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
